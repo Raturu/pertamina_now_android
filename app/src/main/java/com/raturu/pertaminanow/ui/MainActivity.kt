@@ -1,7 +1,8 @@
-package com.raturu.pertaminanow
+package com.raturu.pertaminanow.ui
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.raturu.pertaminanow.R
 
 class MainActivity : AppCompatActivity() {
 
