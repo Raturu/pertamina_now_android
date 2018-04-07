@@ -20,11 +20,36 @@ android {
     }
 }
 
+ext {
+    androidSupportLibVersion = "27.1.1"
+    okhttpLibVersion = '3.9.1'
+    retrofitLibVersion = '2.4.0'
+    rxKotlinVersion = '2.2.0'
+    rxAndroidVersion = '1.2.1'
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:27.1.1'
 
+    //Android Support Libraries
+    implementation "com.android.support:support-v4:$androidSupportLibVersion"
+    implementation "com.android.support:appcompat-v7:$androidSupportLibVersion"
+    implementation "com.android.support:recyclerview-v7:$androidSupportLibVersion"
+    implementation "com.android.support:design:$androidSupportLibVersion"
+
+    //Network
+    implementation "com.squareup.okhttp3:okhttp:$okhttpLibVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpLibVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitLibVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitLibVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava:$retrofitLibVersion"
+
+    //Reactive framework
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+    implementation "io.reactivex:rxandroid:$rxAndroidVersion"
+
+    //Testing
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
