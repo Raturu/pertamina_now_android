@@ -29,7 +29,7 @@ class LoginPresenter(private val view: LoginPresenter.View, private val accountR
                     view.showHomePage()
                 }, {
                     it.printStackTrace()
-                    view.showErrorMessage(it.message ?: "")
+                    it.message?.let { view.showErrorMessage(it) }
                 })
     }
 

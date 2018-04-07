@@ -43,9 +43,7 @@ class KtpVerificationActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         val tag: Tag? = intent?.getParcelableExtra(NfcAdapter.EXTRA_TAG)
-        if (tag != null) {
-            onKtpDataReceived(tag.id.toHex())
-        }
+        tag?.let { onKtpDataReceived(it.id.toHex()) }
     }
 
     private fun enableReaderMode() {
