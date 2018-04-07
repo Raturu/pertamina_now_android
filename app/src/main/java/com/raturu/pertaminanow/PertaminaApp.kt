@@ -10,8 +10,34 @@ import com.facebook.stetho.Stetho
  * GitHub     : https://github.com/zetbaitsu
  */
 class PertaminaApp : Application() {
+    companion object {
+        @Volatile
+        private var INSTANCE: PertaminaApp? = null
+
+        val instance: PertaminaApp
+            get() {
+                if (INSTANCE == null) {
+                    synchronized(PertaminaApp::class.java) {
+                        if (INSTANCE == null) {
+                            throw RuntimeException()
+                        }
+                    }
+                }
+
+                return INSTANCE!!
+            }
+    }
+
+    private lateinit var component: AppComponent
+
     override fun onCreate() {
         super.onCreate()
+        INSTANCE = this
+        component = AppComponent(this)
         Stetho.initializeWithDefaults(this)
+    }
+
+    fun getComponent(): AppComponent {
+        return component
     }
 }
