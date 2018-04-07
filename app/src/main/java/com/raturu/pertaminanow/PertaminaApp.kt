@@ -2,6 +2,8 @@ package com.raturu.pertaminanow
 
 import android.app.Application
 import com.facebook.stetho.Stetho
+import timber.log.Timber
+import timber.log.Timber.DebugTree
 
 /**
  * Created on : April 07, 2018
@@ -34,7 +36,11 @@ class PertaminaApp : Application() {
         super.onCreate()
         INSTANCE = this
         component = AppComponent(this)
-        Stetho.initializeWithDefaults(this)
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(DebugTree())
+            Stetho.initializeWithDefaults(this)
+        }
     }
 
     fun getComponent(): AppComponent {
