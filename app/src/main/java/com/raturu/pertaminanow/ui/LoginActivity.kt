@@ -62,7 +62,7 @@ class LoginActivity : AppCompatActivity(), LoginPresenter.View {
 
     override fun showHomePage() {
         startActivity(
-                Intent(this, MainActivity::class.java)
+                Intent(this, HomeActivity::class.java)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         )
