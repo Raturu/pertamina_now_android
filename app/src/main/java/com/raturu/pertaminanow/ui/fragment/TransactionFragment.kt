@@ -38,6 +38,6 @@ class TransactionFragment : Fragment() {
     }
 
     private fun generateDummyData(count: Int): List<Transaction> {
-        return (0..count).map { Transaction("$it", Date(), it, it.toLong()) }
+        return (0..count).map { Transaction("$it", Date(), it.toDouble(), it.toLong()) }
     }
 }
