@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity(), LoginPresenter.View {
 
         loginButton.setOnClickListener {
             if (validateInput()) {
-                loginPresenter.login(emailTextField.text.toString(), passwordTextField.text.toString())
+                loginPresenter.login(usernameTextField.text.toString(), passwordTextField.text.toString())
             }
         }
 
@@ -44,8 +44,13 @@ class LoginActivity : AppCompatActivity(), LoginPresenter.View {
     }
 
     private fun validateInput(): Boolean {
-        if (!Patterns.EMAIL_ADDRESS.matcher(emailTextField.text.toString()).matches()) {
-            emailTextField.error = "Please insert a valid e-mail address!"
+        if (usernameTextField.text.isBlank()) {
+            usernameTextField.error = "Please insert your username!"
+            return false
+        }
+
+        if (passwordTextField.text.isBlank()) {
+            passwordTextField.error = "Please insert your password!"
             return false
         }
 

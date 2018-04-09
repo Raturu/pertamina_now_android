@@ -2,6 +2,8 @@ package com.raturu.pertaminanow
 
 import android.content.Context
 import com.raturu.pertaminanow.data.source.impl.AccountRepositoryImpl
+import com.raturu.pertaminanow.data.source.remote.HttpClientFactory
+import com.raturu.pertaminanow.data.source.remote.RestApiFactory
 
 /**
  * Created on : April 07, 2018
@@ -10,5 +12,6 @@ import com.raturu.pertaminanow.data.source.impl.AccountRepositoryImpl
  * GitHub     : https://github.com/zetbaitsu
  */
 class AppComponent(context: Context) {
-    val accountRepository = AccountRepositoryImpl(context)
+    val restApi = RestApiFactory.makeRestApi("http://159.65.139.83", HttpClientFactory.makeOkHttpClient(BuildConfig.DEBUG))
+    val accountRepository = AccountRepositoryImpl(context, restApi)
 }

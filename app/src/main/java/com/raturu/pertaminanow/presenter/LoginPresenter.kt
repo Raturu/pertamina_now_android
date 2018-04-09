@@ -1,6 +1,8 @@
 package com.raturu.pertaminanow.presenter
 
 import com.raturu.pertaminanow.data.source.AccountRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 /**
  * Created on : April 07, 2018
@@ -21,9 +23,11 @@ class LoginPresenter(private val view: LoginPresenter.View, private val accountR
                 })
     }
 
-    fun login(email: String, password: String) {
+    fun login(username: String, password: String) {
         view.showLoading()
-        accountRepository.login(email, password)
+        accountRepository.login(username, password)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     view.dismissLoading()
                     view.showHomePage()

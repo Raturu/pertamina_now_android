@@ -1,9 +1,20 @@
 package com.raturu.pertaminanow.data.model
 
+import java.util.*
+
 /**
  * Created on : April 07, 2018
  * Author     : zetbaitsu
  * Name       : Zetra
  * GitHub     : https://github.com/zetbaitsu
  */
-data class User(val id: String, val name: String)
+data class User(
+        val email: String,
+        val ktp: String,
+        val phoneNumber: String,
+        val username: String,
+        val gender: Gender,
+        val placeOfBirth: String,
+        val dateOfBirth: Date,
+        val name: String
+)

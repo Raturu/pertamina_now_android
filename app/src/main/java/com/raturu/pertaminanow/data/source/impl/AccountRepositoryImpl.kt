@@ -3,8 +3,8 @@ package com.raturu.pertaminanow.data.source.impl
 import android.content.Context
 import com.google.gson.Gson
 import com.raturu.pertaminanow.data.model.Account
-import com.raturu.pertaminanow.data.model.User
 import com.raturu.pertaminanow.data.source.AccountRepository
+import com.raturu.pertaminanow.data.source.remote.RestApi
 import io.reactivex.Single
 
 /**
@@ -13,7 +13,7 @@ import io.reactivex.Single
  * Name       : Zetra
  * GitHub     : https://github.com/zetbaitsu
  */
-class AccountRepositoryImpl(context: Context) : AccountRepository {
+class AccountRepositoryImpl(context: Context, private val restApi: RestApi) : AccountRepository {
     private val sharedPreferences = context.getSharedPreferences("account", Context.MODE_PRIVATE)
     private val gson = Gson()
 
@@ -21,10 +21,10 @@ class AccountRepositoryImpl(context: Context) : AccountRepository {
         return Single.just(sharedPreferences.contains("account"))
     }
 
-    override fun login(email: String, password: String): Single<Account> {
-        //TODO call API
-        saveAccount(Account(User("dummy", "dummy"), "dummy"))
-        return Single.just(gson.fromJson(sharedPreferences.getString("account", ""), Account::class.java))
+    override fun login(username: String, password: String): Single<Account> {
+        return restApi.login(username, password)
+                .map { it.toAccountModel() }
+                .doOnSuccess { saveAccount(it) }
     }
 
     override fun getAccount(): Single<Account> {

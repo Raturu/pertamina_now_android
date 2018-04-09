@@ -12,7 +12,7 @@ import io.reactivex.Single
 interface AccountRepository {
     fun isLoggedIn(): Single<Boolean>
 
-    fun login(email: String, password: String): Single<Account>
+    fun login(username: String, password: String): Single<Account>
 
     fun getAccount(): Single<Account>
 
