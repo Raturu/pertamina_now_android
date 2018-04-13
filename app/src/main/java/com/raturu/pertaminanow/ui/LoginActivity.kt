@@ -1,13 +1,17 @@
 package com.raturu.pertaminanow.ui
 
-import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Patterns
+import android.view.View
 import com.raturu.pertaminanow.PertaminaApp
 import com.raturu.pertaminanow.R
 import com.raturu.pertaminanow.presenter.LoginPresenter
+import com.raturu.pertaminanow.util.getColorValue
 import kotlinx.android.synthetic.main.activity_login.*
 
 /**
@@ -19,48 +23,57 @@ import kotlinx.android.synthetic.main.activity_login.*
 class LoginActivity : AppCompatActivity(), LoginPresenter.View {
     private lateinit var loginPresenter: LoginPresenter
 
-    private lateinit var progressDialog: ProgressDialog
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        progressDialog = ProgressDialog(this)
-        progressDialog.setMessage("Please wait!")
-
         loginPresenter = LoginPresenter(this, PertaminaApp.instance.getComponent().accountRepository)
 
+        phoneNumberTextField.addTextChangedListener(textWatcher)
+
         loginButton.setOnClickListener {
-            if (validateInput()) {
-                loginPresenter.login(usernameTextField.text.toString(), passwordTextField.text.toString())
+            loginPresenter.auth("+62${phoneNumberTextField.text}")
+        }
+
+    }
+
+    private val textWatcher = object : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+            when {
+                validateInput(s.toString()) -> enableLoginButton()
+                else -> disableLoginButton()
             }
         }
 
-        registerLink.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
         }
     }
 
-    private fun validateInput(): Boolean {
-        if (usernameTextField.text.isBlank()) {
-            usernameTextField.error = "Please insert your username!"
-            return false
-        }
+    private fun enableLoginButton() {
+        loginButton.setBackgroundColor(getColorValue(R.color.primary))
+        loginButton.isEnabled = true
+    }
 
-        if (passwordTextField.text.isBlank()) {
-            passwordTextField.error = "Please insert your password!"
-            return false
-        }
+    private fun disableLoginButton() {
+        loginButton.setBackgroundColor(getColorValue(R.color.divider))
+        loginButton.isEnabled = false
+    }
 
-        return true
+    private fun validateInput(input: String): Boolean {
+        return "+62$input".length >= 13 && Patterns.PHONE.matcher("+62$input").matches()
     }
 
     override fun showLoading() {
-        progressDialog.show()
+        progressBar.visibility = View.VISIBLE
     }
 
     override fun dismissLoading() {
-        progressDialog.dismiss()
+        progressBar.visibility = View.GONE
     }
 
     override fun showHomePage() {
