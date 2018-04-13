@@ -1,6 +1,8 @@
 package com.raturu.pertaminanow.presenter
 
 import com.raturu.pertaminanow.data.source.AccountRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 /**
  * Created on : April 07, 2018
@@ -12,7 +14,17 @@ class LoginPresenter(private val view: LoginPresenter.View, private val accountR
 
     fun auth(phoneNumber: String) {
         view.showLoading()
-        //TODO implement OTP
+        accountRepository.requestOtpCode(phoneNumber)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    view.dismissLoading()
+                    view.showOtpCodeVerificationPage()
+                }, {
+                    it.printStackTrace()
+                    view.dismissLoading()
+                    it.message?.let { view.showErrorMessage(it) }
+                })
     }
 
     interface View {
@@ -20,7 +32,7 @@ class LoginPresenter(private val view: LoginPresenter.View, private val accountR
 
         fun dismissLoading()
 
-        fun showHomePage()
+        fun showOtpCodeVerificationPage()
 
         fun showErrorMessage(errorMessage: String)
     }

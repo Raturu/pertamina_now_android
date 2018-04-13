@@ -76,9 +76,9 @@ class LoginActivity : AppCompatActivity(), LoginPresenter.View {
         progressBar.visibility = View.GONE
     }
 
-    override fun showHomePage() {
+    override fun showOtpCodeVerificationPage() {
         startActivity(
-                Intent(this, HomeActivity::class.java)
+                Intent(this, OtpCodeVerificationActivity::class.java)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         )
