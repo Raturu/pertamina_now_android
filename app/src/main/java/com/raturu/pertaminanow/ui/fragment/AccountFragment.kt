@@ -11,6 +11,7 @@ import com.raturu.pertaminanow.R
 import com.raturu.pertaminanow.presenter.AccountPresenter
 import com.raturu.pertaminanow.ui.EditProfileActivity
 import com.raturu.pertaminanow.ui.LoginActivity
+import com.raturu.pertaminanow.ui.VouchersActivity
 import kotlinx.android.synthetic.main.fragment_account.*
 
 /**
@@ -37,6 +38,10 @@ class AccountFragment : Fragment(), AccountPresenter.View {
 
         editLink.setOnClickListener {
             startActivity(Intent(activity, EditProfileActivity::class.java))
+        }
+
+        pointButton.setOnClickListener {
+            startActivity(Intent(activity, VouchersActivity::class.java))
         }
 
         logoutLink.setOnClickListener {

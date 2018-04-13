@@ -37,6 +37,7 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$androidSupportLibVersion"
     implementation "com.android.support:recyclerview-v7:$androidSupportLibVersion"
     implementation "com.android.support:design:$androidSupportLibVersion"
+    implementation "com.android.support:cardview-v7:$androidSupportLibVersion"
 
     //Network
     implementation "com.squareup.okhttp3:okhttp:$okhttpLibVersion"
