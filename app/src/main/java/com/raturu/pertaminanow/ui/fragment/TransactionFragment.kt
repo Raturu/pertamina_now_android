@@ -1,5 +1,6 @@
 package com.raturu.pertaminanow.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.raturu.pertaminanow.R
 import com.raturu.pertaminanow.data.model.Transaction
+import com.raturu.pertaminanow.ui.TransactionDetailActivity
 import com.raturu.pertaminanow.ui.adapter.TransactionAdapter
 import kotlinx.android.synthetic.main.fragment_transaction.*
 import java.util.*
@@ -29,6 +31,9 @@ class TransactionFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val transactionAdapter = TransactionAdapter(activity!!)
+        transactionAdapter.setOnItemClickListener {
+            startActivity(Intent(activity, TransactionDetailActivity::class.java))
+        }
 
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)

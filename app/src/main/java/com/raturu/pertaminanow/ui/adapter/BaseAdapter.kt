@@ -44,16 +44,24 @@ abstract class BaseAdapter<Data, Holder : BaseViewHolder<Data>>(private val cont
         fun onItemClick(position: Int)
     }
 
-    fun setOnItemClickListener(itemClickListener: OnItemClickListener) {
-        this.itemClickListener = itemClickListener
+    fun setOnItemClickListener(onItemClick: (position: Int) -> Unit) {
+        this.itemClickListener = object : OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                onItemClick(position)
+            }
+        }
     }
 
     interface OnItemLongClickListener {
         fun onItemLongClick(position: Int)
     }
 
-    fun setOnItemLongClickListener(itemLongClickListener: OnItemLongClickListener) {
-        this.itemLongClickListener = itemLongClickListener
+    fun setOnItemLongClickListener(onItemLongClick: (position: Int) -> Unit) {
+        this.itemLongClickListener = object : OnItemLongClickListener {
+            override fun onItemLongClick(position: Int) {
+                onItemLongClick(position)
+            }
+        }
     }
 
     fun add(item: Data) {
