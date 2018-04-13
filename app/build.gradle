@@ -55,6 +55,7 @@ dependencies {
 
     //UI
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
     //Testing
     testImplementation 'junit:junit:4.12'
