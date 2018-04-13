@@ -10,9 +10,9 @@ import com.raturu.pertaminanow.R
  * Name       : Zetra
  * GitHub     : https://github.com/zetbaitsu
  */
-class RegisterActivity : AppCompatActivity() {
+class EditProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        setContentView(R.layout.activity_edit_profile)
     }
 }
