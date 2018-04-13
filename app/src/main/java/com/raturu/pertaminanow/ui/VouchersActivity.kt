@@ -7,6 +7,7 @@ import android.view.MenuItem
 import com.raturu.pertaminanow.R
 import com.raturu.pertaminanow.data.model.Voucher
 import com.raturu.pertaminanow.ui.adapter.VoucherAdapter
+import com.raturu.pertaminanow.util.ImageUtil
 import kotlinx.android.synthetic.main.fragment_transaction.*
 
 /**
@@ -35,7 +36,7 @@ class VouchersActivity : AppCompatActivity() {
     }
 
     private fun generateDummyData(count: Int): List<Voucher> {
-        return (1..count).map { Voucher("$it", "", it, "") }
+        return (1..count).map { Voucher("$it", "FREE Rp. 25.000.00 at Halodoc App", it, ImageUtil.getImage(it)) }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
