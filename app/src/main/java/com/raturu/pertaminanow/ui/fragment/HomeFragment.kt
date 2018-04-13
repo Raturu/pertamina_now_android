@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.raturu.pertaminanow.R
+import com.raturu.pertaminanow.ui.adapter.HomePagerAdapter
+import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
  * Created on : April 07, 2018
@@ -20,4 +22,15 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_home, container, false)
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        val homePagerAdapter = HomePagerAdapter(childFragmentManager,
+                arrayListOf(PromoFragment.newInstance(), PromoFragment.newInstance(),
+                        PromoFragment.newInstance(), PromoFragment.newInstance()),
+                arrayListOf("All", "Special Promo", "Flash Deals", "Payment")
+        )
+        viewPager.adapter = homePagerAdapter
+        tabLayout.setupWithViewPager(viewPager)
+    }
 }

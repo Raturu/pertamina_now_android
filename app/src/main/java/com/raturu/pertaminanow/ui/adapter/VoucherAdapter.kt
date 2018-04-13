@@ -20,5 +20,4 @@ class VoucherAdapter(context: Context) : BaseAdapter<Voucher, VoucherViewHolder>
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VoucherViewHolder {
         return VoucherViewHolder(getView(parent, viewType), itemClickListener, itemLongClickListener)
     }
-
 }
