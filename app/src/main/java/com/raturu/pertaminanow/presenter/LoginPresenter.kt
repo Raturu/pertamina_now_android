@@ -12,17 +12,6 @@ import io.reactivex.schedulers.Schedulers
  */
 class LoginPresenter(private val view: LoginPresenter.View, private val accountRepository: AccountRepository) {
 
-    fun start() {
-        accountRepository.isLoggedIn()
-                .subscribe({
-                    if (it) {
-                        view.showHomePage()
-                    }
-                }, {
-                    it.printStackTrace()
-                })
-    }
-
     fun login(username: String, password: String) {
         view.showLoading()
         accountRepository.login(username, password)

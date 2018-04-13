@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import android.util.Patterns
 import com.raturu.pertaminanow.PertaminaApp
 import com.raturu.pertaminanow.R
 import com.raturu.pertaminanow.presenter.LoginPresenter
@@ -30,7 +29,6 @@ class LoginActivity : AppCompatActivity(), LoginPresenter.View {
         progressDialog.setMessage("Please wait!")
 
         loginPresenter = LoginPresenter(this, PertaminaApp.instance.getComponent().accountRepository)
-        loginPresenter.start()
 
         loginButton.setOnClickListener {
             if (validateInput()) {
