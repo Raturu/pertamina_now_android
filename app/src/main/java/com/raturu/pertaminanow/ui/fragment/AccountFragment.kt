@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.raturu.pertaminanow.PertaminaApp
 import com.raturu.pertaminanow.R
 import com.raturu.pertaminanow.presenter.AccountPresenter
+import com.raturu.pertaminanow.ui.EditProfileActivity
 import com.raturu.pertaminanow.ui.LoginActivity
 import kotlinx.android.synthetic.main.fragment_account.*
 
@@ -33,6 +34,10 @@ class AccountFragment : Fragment(), AccountPresenter.View {
         super.onActivityCreated(savedInstanceState)
 
         accountPresenter = AccountPresenter(this, PertaminaApp.instance.getComponent().accountRepository)
+
+        editLink.setOnClickListener {
+            startActivity(Intent(activity, EditProfileActivity::class.java))
+        }
 
         logoutLink.setOnClickListener {
             accountPresenter.logout()
