@@ -28,7 +28,7 @@ class SplashActivity : Activity(), SplashPresenter.View {
     }
 
     override fun showLoginPage() {
-        startActivity(Intent(this, OtpCodeVerificationActivity::class.java))
+        startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }
 }
