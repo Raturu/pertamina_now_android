@@ -7,12 +7,12 @@ import com.raturu.pertaminanow.data.model.User
 import com.raturu.pertaminanow.data.source.remote.toDate
 
 /**
- * Created on : April 09, 2018
+ * Created on : April 13, 2018
  * Author     : zetbaitsu
  * Name       : Zetra
  * GitHub     : https://github.com/zetbaitsu
  */
-data class LoginResponse(
+data class AuthResponse(
         @SerializedName("nama") val nama: String,
         @SerializedName("ktp") val ktp: String,
         @SerializedName("jenis_kelamin") val jenisKelamin: String,

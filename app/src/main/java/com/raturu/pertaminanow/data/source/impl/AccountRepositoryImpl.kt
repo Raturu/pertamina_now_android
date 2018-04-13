@@ -21,8 +21,15 @@ class AccountRepositoryImpl(context: Context, private val restApi: RestApi) : Ac
         return Single.just(sharedPreferences.contains("account"))
     }
 
-    override fun login(username: String, password: String): Single<Account> {
-        return restApi.login(username, password)
+    override fun requestOtpCode(phoneNumber: String): Single<Unit> {
+        return restApi.requestOtpCode(phoneNumber)
+                .doOnSuccess { saveRequestCode(it.requestCode) }
+                .map { Unit }
+    }
+
+    override fun auth(otpCode: String): Single<Account> {
+        return Single.fromCallable { getRequestCode() }
+                .flatMap { restApi.auth(it, otpCode) }
                 .map { it.toAccountModel() }
                 .doOnSuccess { saveAccount(it) }
     }
@@ -45,5 +52,18 @@ class AccountRepositoryImpl(context: Context, private val restApi: RestApi) : Ac
 
     private fun saveAccount(account: Account) {
         sharedPreferences.edit().putString("account", gson.toJson(account)).apply()
+    }
+
+    private fun saveRequestCode(requestCode: String) {
+        sharedPreferences.edit().putString("request_code", requestCode).apply()
+    }
+
+    private fun getRequestCode(): String {
+        val requestCode = sharedPreferences.getString("request_code", "")
+
+        if (requestCode.isBlank()) {
+            throw IllegalStateException("You don't have any request code!")
+        }
+        return requestCode
     }
 }
