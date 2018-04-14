@@ -32,6 +32,7 @@
         <activity android:name=".ui.HomeActivity" />
         <activity android:name=".ui.TransactionDetailActivity" />
         <activity android:name=".ui.VouchersActivity" />
+        <activity android:name=".ui.NotificationsActivity" />
     </application>
 
 </manifest>
