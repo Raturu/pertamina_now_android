@@ -70,7 +70,7 @@ interface RestApi {
     @POST("/pertamina-now/api/Collection/promoSPBU/")
     fun getPromos(
             @Header("x-api-key") token: String,
-            @Field("id_kategori") categoryId: Int? = null
+            @Field("id_kategori") categoryId: String? = null
     ): Single<List<GetPromosResponse>>
 
     @GET("/pertamina-now/api/Collection/transaksi/")
