@@ -31,4 +31,14 @@ class SplashActivity : Activity(), SplashPresenter.View {
         startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }
+
+    override fun showEditProfilePage() {
+        startActivity(Intent(this, EditProfileActivity::class.java))
+        finish()
+    }
+
+    override fun showKtpVerificationPage() {
+        startActivity(Intent(this, KtpVerificationActivity::class.java))
+        finish()
+    }
 }

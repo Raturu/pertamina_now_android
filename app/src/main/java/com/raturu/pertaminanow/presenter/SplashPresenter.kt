@@ -14,8 +14,21 @@ class SplashPresenter(private val view: View, private val accountRepository: Acc
         accountRepository.isLoggedIn()
                 .subscribe({
                     when {
-                        it -> view.showHomePage()
+                        it -> checkAccountState()
                         else -> view.showLoginPage()
+                    }
+                }, {
+                    it.printStackTrace()
+                })
+    }
+
+    private fun checkAccountState() {
+        accountRepository.getAccount()
+                .subscribe({
+                    when {
+                        it.user.name.isBlank() -> view.showEditProfilePage()
+                        it.user.ktp.isBlank() -> view.showKtpVerificationPage()
+                        else -> view.showHomePage()
                     }
                 }, {
                     it.printStackTrace()
@@ -27,5 +40,9 @@ class SplashPresenter(private val view: View, private val accountRepository: Acc
         fun showHomePage()
 
         fun showLoginPage()
+
+        fun showEditProfilePage()
+
+        fun showKtpVerificationPage()
     }
 }
