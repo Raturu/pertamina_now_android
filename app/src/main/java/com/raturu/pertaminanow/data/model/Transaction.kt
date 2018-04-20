@@ -8,4 +8,9 @@ import java.util.*
  * Name       : Zetra
  * GitHub     : https://github.com/zetbaitsu
  */
-data class Transaction(val id: String, val createdAt: Date, val gasolineAmount: Double, val paidAmount: Long)
+data class Transaction(
+        val id: String,
+        val createdAt: Date,
+        val gasolineAmount: Double,
+        val paidAmount: Long
+)

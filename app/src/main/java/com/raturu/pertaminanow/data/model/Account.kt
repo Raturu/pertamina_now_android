@@ -6,4 +6,7 @@ package com.raturu.pertaminanow.data.model
  * Name       : Zetra
  * GitHub     : https://github.com/zetbaitsu
  */
-data class Account(val user: User, val token: String)
+data class Account(
+        val user: User,
+        val token: String
+)
