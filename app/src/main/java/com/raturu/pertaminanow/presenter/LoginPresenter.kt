@@ -10,7 +10,7 @@ import io.reactivex.schedulers.Schedulers
  * Name       : Zetra
  * GitHub     : https://github.com/zetbaitsu
  */
-class LoginPresenter(private val view: LoginPresenter.View, private val accountRepository: AccountRepository) {
+class LoginPresenter(private val view: View, private val accountRepository: AccountRepository) {
 
     fun auth(phoneNumber: String) {
         view.showLoading()
