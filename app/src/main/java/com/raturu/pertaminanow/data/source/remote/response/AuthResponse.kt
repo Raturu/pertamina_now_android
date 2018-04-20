@@ -24,20 +24,18 @@ data class AuthResponse(
         @SerializedName("poin") val poin: Int,
         @SerializedName("API_key") val apiKey: String
 ) {
-    fun toAccountModel(): Account {
-        return Account(
-                User(
-                        email,
-                        ktp,
-                        noTlp,
-                        if (jenisKelamin == "0") Gender.FEMALE else Gender.MALE,
-                        tanggalLahir.toDate(),
-                        nama,
-                        "",
-                        saldo,
-                        poin
-                ),
-                apiKey
-        )
-    }
+    fun toAccountModel(): Account = Account(
+            User(
+                    email,
+                    ktp,
+                    noTlp,
+                    if (jenisKelamin == "0") Gender.FEMALE else Gender.MALE,
+                    tanggalLahir.toDate(),
+                    nama,
+                    "",
+                    saldo,
+                    poin
+            ),
+            apiKey
+    )
 }
