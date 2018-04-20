@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
  * Name       : Zetra
  * GitHub     : https://github.com/zetbaitsu
  */
-data class GetPromoResponse(
+data class GetPromosResponse(
         @SerializedName("id_spbu") val idSpbu: String,
         @SerializedName("no_spbu") val noSpbu: String,
         @SerializedName("nama_spbu") val namaSpbu: String,

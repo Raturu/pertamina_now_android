@@ -59,7 +59,7 @@ interface RestApi {
             @Header("x-api-key") token: String,
             @Field("latitude") latitude: Double,
             @Field("longitude") longitude: Double
-    ): Single<GetNearbySpbuResponse>
+    ): Single<List<GetNearbySpbuResponse>>
 
     @GET("/pertamina-now/api/Collection/kategoriPromo/")
     fun getPromoCategories(
@@ -68,13 +68,13 @@ interface RestApi {
 
     @FormUrlEncoded
     @POST("/pertamina-now/api/Collection/promoSPBU/")
-    fun getPromo(
+    fun getPromos(
             @Header("x-api-key") token: String,
             @Field("id_kategori") categoryId: Int? = null
-    ): Single<GetPromoResponse>
+    ): Single<List<GetPromosResponse>>
 
     @GET("/pertamina-now/api/Collection/transaksi/")
     fun getTransactionHistories(
             @Header("x-api-key") token: String
-    ): Single<GetTransactionHistoriesResponse>
+    ): Single<List<GetTransactionHistoriesResponse>>
 }
