@@ -37,8 +37,7 @@ interface RestApi {
             @Header("x-api-key") token: String,
             @Field("ktp") ktpSerialNumber: String
     ): Single<VerifyKtpResponse>
-
-    @FormUrlEncoded
+    
     @GET("/pertamina-now/api/Collection/checkKTP")
     fun isKtpVerified(
             @Header("x-api-key") token: String
