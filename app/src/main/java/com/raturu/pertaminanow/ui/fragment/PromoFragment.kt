@@ -1,19 +1,18 @@
 package com.raturu.pertaminanow.ui.fragment
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.raturu.pertaminanow.PertaminaApp
 import com.raturu.pertaminanow.R
-import com.raturu.pertaminanow.data.model.Location
 import com.raturu.pertaminanow.data.model.Promo
-import com.raturu.pertaminanow.data.model.Spbu
+import com.raturu.pertaminanow.presenter.PromoPresenter
 import com.raturu.pertaminanow.ui.adapter.PromoAdapter
-import com.raturu.pertaminanow.util.ImageUtil
 import kotlinx.android.synthetic.main.fragment_promo.*
-import java.util.*
 
 /**
  * Created on : April 13, 2018
@@ -21,9 +20,20 @@ import java.util.*
  * Name       : Zetra
  * GitHub     : https://github.com/zetbaitsu
  */
-class PromoFragment : Fragment() {
+class PromoFragment : Fragment(), PromoPresenter.View {
+    private lateinit var promoPresenter: PromoPresenter
+    private lateinit var promoAdapter: PromoAdapter
+
     companion object {
-        fun newInstance(): PromoFragment = PromoFragment()
+        private const val EXTRA_PROMO_CATEGORY = "extra_promo_category"
+
+        fun newInstance(promoCategory: Promo.Category? = null): PromoFragment {
+            val fragment = PromoFragment()
+            val bundle = Bundle()
+            bundle.putParcelable(EXTRA_PROMO_CATEGORY, promoCategory)
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -32,20 +42,34 @@ class PromoFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val promoAdapter = PromoAdapter(activity!!)
+
+        promoPresenter = PromoPresenter(this, PertaminaApp.instance.getComponent().promoRepository)
+
+        promoAdapter = PromoAdapter(activity!!)
+        promoAdapter.setOnItemClickListener {
+            //TODO
+        }
 
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = promoAdapter
 
-        promoAdapter.add(generateDummyData(30))
+        promoPresenter.loadPromos(arguments?.getParcelable(EXTRA_PROMO_CATEGORY))
     }
 
-    private fun generateDummyData(count: Int): List<Promo> {
-        return (1..count).map {
-            Promo("$it", Promo.Category("", ""), "Diskon Pertamax Hingga 75% Khusus Untuk Pengguna Baru",
-                    "", ImageUtil.getImage(it), Date(), Date(),
-                    Spbu("", "", Location("", "", "", 0.0, 0.0)), 0)
-        }
+    override fun showLoading() {
+        //TODO
+    }
+
+    override fun dismissLoading() {
+        //TODO
+    }
+
+    override fun showPromos(promos: List<Promo>) {
+        promoAdapter.addOrUpdate(promos)
+    }
+
+    override fun showErrorMessage(errorMessage: String) {
+        Snackbar.make(recyclerView, errorMessage, Snackbar.LENGTH_LONG).show()
     }
 }

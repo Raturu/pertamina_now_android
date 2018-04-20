@@ -45,12 +45,13 @@ class HomeFragment : Fragment(), HomePresenter.View {
     }
 
     override fun showPromoFragments(promoCategories: List<Promo.Category>) {
-        val homePagerAdapter = HomePagerAdapter(childFragmentManager,
-                arrayListOf(PromoFragment.newInstance(), PromoFragment.newInstance(),
-                        PromoFragment.newInstance(), PromoFragment.newInstance()),
-                arrayListOf("All", "Special Promo", "Flash Deals", "Payment")
-        )
-        viewPager.adapter = homePagerAdapter
+        val fragments = mutableListOf(PromoFragment.newInstance())
+        fragments.addAll(promoCategories.map { PromoFragment.newInstance(it) })
+
+        val titles = mutableListOf("All")
+        titles.addAll(promoCategories.map { it.name })
+
+        viewPager.adapter = HomePagerAdapter(childFragmentManager, fragments, titles)
         tabLayout.setupWithViewPager(viewPager)
     }
 
