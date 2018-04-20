@@ -47,10 +47,10 @@ interface RestApi {
             @Field("nama") name: String,
             @Field("jenis_kelamin") male: Int,
             @Field("tanggal_lahir") dateOfBirth: String,
-            @Field("tempat_lahir") placeOfBirth: String,
             @Field("email") email: String,
             @Field("no_tlp") phoneNumber: String,
-            @Field("username") username: String
+            @Field("tempat_lahir") placeOfBirth: String = "",
+            @Field("username") username: String = ""
     ): Single<UpdateProfileResponse>
 
     @FormUrlEncoded

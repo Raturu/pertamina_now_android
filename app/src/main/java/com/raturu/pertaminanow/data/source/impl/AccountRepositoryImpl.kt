@@ -3,8 +3,10 @@ package com.raturu.pertaminanow.data.source.impl
 import android.content.Context
 import com.google.gson.Gson
 import com.raturu.pertaminanow.data.model.Account
+import com.raturu.pertaminanow.data.model.Gender
 import com.raturu.pertaminanow.data.source.AccountRepository
 import com.raturu.pertaminanow.data.source.remote.RestApi
+import com.raturu.pertaminanow.data.source.remote.formatDate
 import com.raturu.pertaminanow.data.source.remote.response.RequestOtpCodeResponse
 import io.reactivex.Single
 
@@ -42,9 +44,16 @@ class AccountRepositoryImpl(context: Context, private val restApi: RestApi) : Ac
     }
 
     override fun updateAccount(account: Account): Single<Account> {
-        //TODO call API
-        saveAccount(account)
-        return getAccount()
+        return restApi.updateProfile(
+                account.token,
+                account.user.name,
+                if (account.user.gender == Gender.MALE) 1 else 0,
+                account.user.dateOfBirth.formatDate(),
+                account.user.email,
+                account.user.phoneNumber
+        )
+                .map { account }
+                .doOnSuccess { saveAccount(it) }
     }
 
     override fun logout(): Single<Unit> {
