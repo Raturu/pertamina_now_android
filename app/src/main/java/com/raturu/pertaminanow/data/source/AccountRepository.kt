@@ -16,6 +16,10 @@ interface AccountRepository {
 
     fun auth(otpCode: String): Single<Account>
 
+    fun verifyKtp(ktpSerialNumber: String): Single<Unit>
+
+    fun isKtpVerified(): Single<Boolean>
+
     fun getAccount(): Single<Account>
 
     fun updateAccount(account: Account): Single<Account>

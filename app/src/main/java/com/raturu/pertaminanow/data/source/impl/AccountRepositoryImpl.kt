@@ -37,6 +37,20 @@ class AccountRepositoryImpl(context: Context, private val restApi: RestApi) : Ac
                 .doOnSuccess { saveAccount(it) }
     }
 
+    override fun verifyKtp(ktpSerialNumber: String): Single<Unit> {
+        return getAccount().flatMap { restApi.verifyKtp(it.token, ktpSerialNumber) }
+                .map { Unit }
+                .doOnSuccess {
+                    val account = getAccount().blockingGet()
+                    saveAccount(account.copy(user = account.user.copy(ktp = ktpSerialNumber)))
+                }
+    }
+
+    override fun isKtpVerified(): Single<Boolean> {
+        return getAccount().flatMap { restApi.isKtpVerified(it.token) }
+                .map { it.status }
+    }
+
     override fun getAccount(): Single<Account> {
         return Single.fromCallable {
             gson.fromJson(sharedPreferences.getString("account", ""), Account::class.java)
