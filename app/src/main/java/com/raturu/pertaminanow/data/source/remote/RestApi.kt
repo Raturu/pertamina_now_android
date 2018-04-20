@@ -1,6 +1,7 @@
 package com.raturu.pertaminanow.data.source.remote
 
 import com.raturu.pertaminanow.data.source.remote.response.AuthResponse
+import com.raturu.pertaminanow.data.source.remote.response.IsKtpVerifiedResponse
 import com.raturu.pertaminanow.data.source.remote.response.RequestOtpCodeResponse
 import com.raturu.pertaminanow.data.source.remote.response.VerifyKtpResponse
 import io.reactivex.Single
@@ -36,4 +37,10 @@ interface RestApi {
             @Header("x-api-key") token: String,
             @Field("ktp") ktpSerialNumber: String
     ): Single<VerifyKtpResponse>
+
+    @FormUrlEncoded
+    @GET("/pertamina-now/api/Collection/checkKTP")
+    fun isKtpVerified(
+            @Header("x-api-key") token: String
+    ): Single<IsKtpVerifiedResponse>
 }
