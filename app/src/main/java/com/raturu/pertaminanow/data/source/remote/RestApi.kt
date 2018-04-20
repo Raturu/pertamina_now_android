@@ -32,7 +32,7 @@ interface RestApi {
     ): Single<AuthResponse>
 
     @FormUrlEncoded
-    @POST("/pertamina-now/api/Collection/verifySmsCode/")
+    @POST("/pertamina-now/api/Collection/inputKTP/")
     fun verifyKtp(
             @Header("x-api-key") token: String,
             @Field("ktp") ktpSerialNumber: String
