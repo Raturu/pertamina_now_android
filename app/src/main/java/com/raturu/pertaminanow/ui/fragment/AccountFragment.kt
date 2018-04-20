@@ -38,7 +38,7 @@ class AccountFragment : Fragment(), AccountPresenter.View {
         accountPresenter = AccountPresenter(this, PertaminaApp.instance.getComponent().accountRepository)
 
         editLink.setOnClickListener {
-            startActivity(Intent(activity, EditProfileActivity::class.java))
+            startActivity(EditProfileActivity.newIntent(activity!!))
         }
 
         pointButton.setOnClickListener {

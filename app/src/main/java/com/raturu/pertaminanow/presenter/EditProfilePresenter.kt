@@ -27,9 +27,7 @@ class EditProfilePresenter(private val view: View, private val accountRepository
                 })
     }
 
-    fun updateProfile(account: Account) {
-        val fromOtpPage = account.user.name.isBlank()
-
+    fun updateProfile(account: Account, fromOtpPage: Boolean) {
         view.showLoading()
         accountRepository.updateAccount(account)
                 .subscribeOn(Schedulers.io())
@@ -37,7 +35,8 @@ class EditProfilePresenter(private val view: View, private val accountRepository
                 .subscribe({
                     view.dismissLoading()
                     when {
-                        fromOtpPage -> view.showKtpVerificationPage()
+                        fromOtpPage && account.user.ktp.isBlank() -> view.showKtpVerificationPage()
+                        fromOtpPage -> view.showHomePage()
                         else -> view.onProfileUpdated(it)
                     }
                 }, {
@@ -53,6 +52,8 @@ class EditProfilePresenter(private val view: View, private val accountRepository
         fun dismissLoading()
 
         fun showProfile(account: Account)
+
+        fun showHomePage()
 
         fun showKtpVerificationPage()
 

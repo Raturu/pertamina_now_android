@@ -33,7 +33,7 @@ class SplashActivity : Activity(), SplashPresenter.View {
     }
 
     override fun showEditProfilePage() {
-        startActivity(Intent(this, EditProfileActivity::class.java))
+        startActivity(EditProfileActivity.newIntent(this, true))
         finish()
     }
 

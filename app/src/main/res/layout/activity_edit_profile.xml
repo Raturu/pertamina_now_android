@@ -66,8 +66,7 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:src="@drawable/ic_account"
-                    android:tint="@color/secondary_text"
-                    app:civ_border_color="@color/white"
+                    app:civ_border_color="@color/divider"
                     app:civ_border_width="2dp" />
 
                 <ProgressBar

@@ -75,7 +75,7 @@ class OtpCodeVerificationActivity : AppCompatActivity(), OtpCodeVerificationPres
 
     override fun showEditProfilePage() {
         startActivity(
-                Intent(this, EditProfileActivity::class.java)
+                EditProfileActivity.newIntent(this, true)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         )

@@ -14,4 +14,6 @@ private val simpleMonthFormat = SimpleDateFormat("dd MMM yyyy", Locale.US)
 
 fun Date.toFullDateFormat(): String = fullDateFormat.format(this)
 
+fun String.fromFullDateFormat(): Date = fullDateFormat.parse(this)
+
 fun Date.toSimpleMonthFormat(): String = simpleMonthFormat.format(this)
