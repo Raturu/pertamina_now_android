@@ -60,4 +60,11 @@ interface RestApi {
             @Field("latitude") latitude: Double,
             @Field("longitude") longitude: Double
     ): Single<GetNearbySpbuResponse>
+
+    @FormUrlEncoded
+    @POST("/pertamina-now/api/Collection/promoSPBU/")
+    fun getPromo(
+            @Header("x-api-key") token: String,
+            @Field("id_kategori") categoryId: Int? = null
+    ): Single<GetPromoResponse>
 }
