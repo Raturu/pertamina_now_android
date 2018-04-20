@@ -1,11 +1,15 @@
 package com.raturu.pertaminanow.ui.fragment
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.raturu.pertaminanow.PertaminaApp
 import com.raturu.pertaminanow.R
+import com.raturu.pertaminanow.data.model.Promo
+import com.raturu.pertaminanow.presenter.HomePresenter
 import com.raturu.pertaminanow.ui.adapter.HomePagerAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -15,7 +19,9 @@ import kotlinx.android.synthetic.main.fragment_home.*
  * Name       : Zetra
  * GitHub     : https://github.com/zetbaitsu
  */
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), HomePresenter.View {
+    private lateinit var homePresenter: HomePresenter
+
     companion object {
         fun newInstance(): HomeFragment = HomeFragment()
     }
@@ -26,6 +32,19 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        homePresenter = HomePresenter(this, PertaminaApp.instance.getComponent().promoRepository)
+        homePresenter.loadPromoCategories()
+    }
+
+    override fun showLoading() {
+        //TODO
+    }
+
+    override fun dismissLoading() {
+        //TODO
+    }
+
+    override fun showPromoFragments(promoCategories: List<Promo.Category>) {
         val homePagerAdapter = HomePagerAdapter(childFragmentManager,
                 arrayListOf(PromoFragment.newInstance(), PromoFragment.newInstance(),
                         PromoFragment.newInstance(), PromoFragment.newInstance()),
@@ -33,5 +52,9 @@ class HomeFragment : Fragment() {
         )
         viewPager.adapter = homePagerAdapter
         tabLayout.setupWithViewPager(viewPager)
+    }
+
+    override fun showErrorMessage(errorMessage: String) {
+        Snackbar.make(viewPager, errorMessage, Snackbar.LENGTH_LONG).show()
     }
 }
