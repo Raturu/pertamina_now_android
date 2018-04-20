@@ -5,6 +5,7 @@ import com.raturu.pertaminanow.data.model.Account
 import com.raturu.pertaminanow.data.model.Gender
 import com.raturu.pertaminanow.data.model.User
 import com.raturu.pertaminanow.data.source.remote.toDate
+import java.util.*
 
 /**
  * Created on : April 13, 2018
@@ -13,28 +14,28 @@ import com.raturu.pertaminanow.data.source.remote.toDate
  * GitHub     : https://github.com/zetbaitsu
  */
 data class AuthResponse(
-        @SerializedName("nama") val nama: String,
-        @SerializedName("ktp") val ktp: String,
-        @SerializedName("jenis_kelamin") val jenisKelamin: String,
-        @SerializedName("tanggal_lahir") val tanggalLahir: String,
+        @SerializedName("nama") val nama: String?,
+        @SerializedName("ktp") val ktp: String?,
+        @SerializedName("jenis_kelamin") val jenisKelamin: String?,
+        @SerializedName("tanggal_lahir") val tanggalLahir: String?,
         @SerializedName("tempat_lahir") val tempatLahir: String,
-        @SerializedName("email") val email: String,
-        @SerializedName("no_tlp") val noTlp: String,
-        @SerializedName("saldo") val saldo: Long,
-        @SerializedName("poin") val poin: Int,
+        @SerializedName("email") val email: String?,
+        @SerializedName("no_tlp") val noTlp: String?,
+        @SerializedName("saldo") val saldo: Long?,
+        @SerializedName("poin") val poin: Int?,
         @SerializedName("API_key") val apiKey: String
 ) {
     fun toAccountModel(): Account = Account(
             User(
-                    email,
-                    ktp,
-                    noTlp,
+                    email ?: "",
+                    ktp ?: "",
+                    noTlp ?: "",
                     if (jenisKelamin == "0") Gender.FEMALE else Gender.MALE,
-                    tanggalLahir.toDate(),
-                    nama,
+                    tanggalLahir?.toDate() ?: Date(0),
+                    nama ?: "",
                     "",
-                    saldo,
-                    poin
+                    saldo ?: 0,
+                    poin ?: 0
             ),
             apiKey
     )
