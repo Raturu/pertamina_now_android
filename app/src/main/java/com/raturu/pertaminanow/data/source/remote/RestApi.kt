@@ -67,4 +67,9 @@ interface RestApi {
             @Header("x-api-key") token: String,
             @Field("id_kategori") categoryId: Int? = null
     ): Single<GetPromoResponse>
+
+    @GET("/pertamina-now/api/Collection/transaksi/")
+    fun getTransactionHistories(
+            @Header("x-api-key") token: String
+    ): Single<GetTransactionHistoriesResponse>
 }
