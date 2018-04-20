@@ -11,6 +11,9 @@ import java.util.*
 data class Transaction(
         val id: String,
         val createdAt: Date,
+        val price: Long,
         val gasolineAmount: Double,
-        val paidAmount: Long
+        val paidAmount: Long,
+        val spbu: Spbu,
+        val point: Int
 )
