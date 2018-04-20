@@ -19,7 +19,7 @@ class AccountRepositoryImpl(context: Context, private val restApi: RestApi) : Ac
     private val gson = Gson()
 
     override fun isLoggedIn(): Single<Boolean> {
-        return Single.just(sharedPreferences.contains("account"))
+        return Single.fromCallable { sharedPreferences.contains("account") }
     }
 
     override fun requestOtpCode(phoneNumber: String): Single<Unit> {
@@ -36,8 +36,9 @@ class AccountRepositoryImpl(context: Context, private val restApi: RestApi) : Ac
     }
 
     override fun getAccount(): Single<Account> {
-        //TODO call API
-        return Single.just(gson.fromJson(sharedPreferences.getString("account", ""), Account::class.java))
+        return Single.fromCallable {
+            gson.fromJson(sharedPreferences.getString("account", ""), Account::class.java)
+        }
     }
 
     override fun updateAccount(account: Account): Single<Account> {
