@@ -2,6 +2,7 @@ package com.raturu.pertaminanow.data.source.remote
 
 import com.raturu.pertaminanow.data.source.remote.response.AuthResponse
 import com.raturu.pertaminanow.data.source.remote.response.RequestOtpCodeResponse
+import com.raturu.pertaminanow.data.source.remote.response.VerifyKtpResponse
 import io.reactivex.Single
 import retrofit2.http.*
 
@@ -28,4 +29,11 @@ interface RestApi {
             @Field("request_id") requestCode: String,
             @Field("otp_code") otpCode: String
     ): Single<AuthResponse>
+
+    @FormUrlEncoded
+    @POST("/pertamina-now/api/Collection/verifySmsCode/")
+    fun verifyKtp(
+            @Header("x-api-key") token: String,
+            @Field("ktp") ktpSerialNumber: String
+    ): Single<VerifyKtpResponse>
 }
