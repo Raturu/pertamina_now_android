@@ -25,7 +25,7 @@ interface RestApi {
     fun auth(
             @Header("x-api-key") key: String,
             @Field("request_id") requestCode: String,
-            @Field("otp_code") otpCode: String
+            @Field("code") otpCode: String
     ): Single<AuthResponse>
 
     @FormUrlEncoded
