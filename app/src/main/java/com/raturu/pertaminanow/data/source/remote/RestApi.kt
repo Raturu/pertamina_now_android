@@ -52,4 +52,12 @@ interface RestApi {
             @Field("no_tlp") phoneNumber: String,
             @Field("username") username: String
     ): Single<UpdateProfileResponse>
+
+    @FormUrlEncoded
+    @POST("/pertamina-now/api/Collection/nearbySPBU/")
+    fun getNearbySpbu(
+            @Header("x-api-key") token: String,
+            @Field("latitude") latitude: Double,
+            @Field("longitude") longitude: Double
+    ): Single<GetNearbySpbuResponse>
 }
