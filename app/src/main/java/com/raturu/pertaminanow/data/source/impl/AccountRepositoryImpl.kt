@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import com.raturu.pertaminanow.data.model.Account
 import com.raturu.pertaminanow.data.source.AccountRepository
 import com.raturu.pertaminanow.data.source.remote.RestApi
+import com.raturu.pertaminanow.data.source.remote.response.RequestOtpCodeResponse
 import io.reactivex.Single
 
 /**
@@ -23,13 +24,13 @@ class AccountRepositoryImpl(context: Context, private val restApi: RestApi) : Ac
 
     override fun requestOtpCode(phoneNumber: String): Single<Unit> {
         return restApi.requestOtpCode(phoneNumber)
-                .doOnSuccess { saveRequestCode(it.requestCode) }
+                .doOnSuccess { saveOtpRequest(it) }
                 .map { Unit }
     }
 
     override fun auth(otpCode: String): Single<Account> {
         return Single.fromCallable { getRequestCode() }
-                .flatMap { restApi.auth(it, otpCode) }
+                .flatMap { restApi.auth(it.key, it.requestId, otpCode) }
                 .map { it.toAccountModel() }
                 .doOnSuccess { saveAccount(it) }
     }
@@ -54,16 +55,16 @@ class AccountRepositoryImpl(context: Context, private val restApi: RestApi) : Ac
         sharedPreferences.edit().putString("account", gson.toJson(account)).apply()
     }
 
-    private fun saveRequestCode(requestCode: String) {
-        sharedPreferences.edit().putString("request_code", requestCode).apply()
+    private fun saveOtpRequest(otpCodeResponse: RequestOtpCodeResponse) {
+        sharedPreferences.edit().putString("otp_request", gson.toJson(otpCodeResponse)).apply()
     }
 
-    private fun getRequestCode(): String {
-        val requestCode = sharedPreferences.getString("request_code", "")
+    private fun getRequestCode(): RequestOtpCodeResponse {
+        val rawJson = sharedPreferences.getString("otp_request", "")
 
-        if (requestCode.isBlank()) {
+        if (rawJson.isBlank()) {
             throw IllegalStateException("You don't have any request code!")
         }
-        return requestCode
+        return gson.fromJson(rawJson, RequestOtpCodeResponse::class.java)
     }
 }

@@ -3,10 +3,7 @@ package com.raturu.pertaminanow.data.source.remote
 import com.raturu.pertaminanow.data.source.remote.response.AuthResponse
 import com.raturu.pertaminanow.data.source.remote.response.RequestOtpCodeResponse
 import io.reactivex.Single
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 
 /**
@@ -17,20 +14,18 @@ import retrofit2.http.POST
  */
 interface RestApi {
 
-    //TODO change end point
     @Headers("x-api-key:CODEX@123")
     @FormUrlEncoded
-    @POST("/pertamina-now/api/Collection/login/")
+    @POST("/pertamina-now/api/Collection/sendPhoneNumber/")
     fun requestOtpCode(
-            @Field("phone_number") phoneNumber: String
+            @Field("no_tlp") phoneNumber: String
     ): Single<RequestOtpCodeResponse>
 
-    //TODO change end point
-    @Headers("x-api-key:CODEX@123")
     @FormUrlEncoded
-    @POST("/pertamina-now/api/Collection/login/")
+    @POST("/pertamina-now/api/Collection/verifySmsCode/")
     fun auth(
-            @Field("request_code") requestCode: String,
+            @Header("x-api-key") key: String,
+            @Field("request_id") requestCode: String,
             @Field("otp_code") otpCode: String
     ): Single<AuthResponse>
 }

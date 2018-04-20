@@ -9,5 +9,6 @@ import com.google.gson.annotations.SerializedName
  * GitHub     : https://github.com/zetbaitsu
  */
 data class RequestOtpCodeResponse(
-        @SerializedName("request_code") val requestCode: String
+        @SerializedName("key") val key: String,
+        @SerializedName("request_id") val requestId: String
 )
