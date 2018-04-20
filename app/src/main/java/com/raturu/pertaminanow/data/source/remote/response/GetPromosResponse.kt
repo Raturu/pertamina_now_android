@@ -13,7 +13,7 @@ import com.raturu.pertaminanow.data.source.remote.toDate
  * GitHub     : https://github.com/zetbaitsu
  */
 data class GetPromosResponse(
-        @SerializedName("id") val id: String,
+        @SerializedName("id_promo") val idPromo: String,
         @SerializedName("id_spbu") val idSpbu: String,
         @SerializedName("no_spbu") val noSpbu: String,
         @SerializedName("nama_spbu") val namaSpbu: String,
@@ -34,7 +34,7 @@ data class GetPromosResponse(
         @SerializedName("kategori") val kategori: String
 ) {
     fun toPromoModel(): Promo = Promo(
-            id,
+            idPromo,
             Promo.Category(idKategori, kategori),
             judul,
             deskripsi,

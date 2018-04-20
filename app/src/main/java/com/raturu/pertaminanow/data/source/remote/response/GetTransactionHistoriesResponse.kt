@@ -13,7 +13,7 @@ import com.raturu.pertaminanow.data.source.remote.toDate
  * GitHub     : https://github.com/zetbaitsu
  */
 data class GetTransactionHistoriesResponse(
-        @SerializedName("id") val id: String,
+        @SerializedName("id_transaksi") val idTransaksi: String,
         @SerializedName("jenis_bbm") val jenisBbm: String,
         @SerializedName("waktu_transaksi") val waktuTransaksi: String,
         @SerializedName("total_pembelian") val totalPembelian: Double,
@@ -29,7 +29,7 @@ data class GetTransactionHistoriesResponse(
         @SerializedName("poin") val poin: Int
 ) {
     fun toTransactionModel(): Transaction = Transaction(
-            id,
+            idTransaksi,
             waktuTransaksi.toDate(),
             harga,
             totalPembelian,
