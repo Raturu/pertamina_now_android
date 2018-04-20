@@ -70,6 +70,29 @@ class AccountRepositoryImpl(context: Context, private val restApi: RestApi) : Ac
                 .doOnSuccess { saveAccount(it) }
     }
 
+    override fun getBalance(): Single<Long> {
+        return getAccount().flatMap { restApi.getBalance(it.token) }
+                .map { it.balance }
+                .doOnSuccess {
+                    val account = getAccount().blockingGet()
+                    saveAccount(account.copy(user = account.user.copy(balance = it)))
+                }
+    }
+
+    override fun topUpBalance(amount: Long): Single<Long> {
+        return getAccount().flatMap { restApi.topUpBalance(it.token, amount) }
+                .flatMap { getBalance() }
+    }
+
+    override fun getPoint(): Single<Int> {
+        return getAccount().flatMap { restApi.getPoint(it.token) }
+                .map { it.point }
+                .doOnSuccess {
+                    val account = getAccount().blockingGet()
+                    saveAccount(account.copy(user = account.user.copy(point = it)))
+                }
+    }
+
     override fun logout(): Single<Unit> {
         sharedPreferences.edit().clear().apply()
         return Single.just(Unit)

@@ -24,5 +24,11 @@ interface AccountRepository {
 
     fun updateAccount(account: Account): Single<Account>
 
+    fun getBalance(): Single<Long>
+
+    fun topUpBalance(amount: Long): Single<Long>
+
+    fun getPoint(): Single<Int>
+
     fun logout(): Single<Unit>
 }
