@@ -84,4 +84,9 @@ interface RestApi {
             @Header("x-api-key") token: String,
             @Field("amount") amount: Long
     ): Single<TopUpBalanceResponse>
+
+    @GET("/pertamina-now/api/Collection/balance/")
+    fun getBalance(
+            @Header("x-api-key") token: String
+    ): Single<GetBalanceResponse>
 }
