@@ -46,7 +46,7 @@ class PromoRepositoryImpl(context: Context, private val accountRepository: Accou
 
     private fun savePromoCategories(promoCategories: List<Promo.Category>) {
         sharedPreferences.edit().putString("promo_categories", gson.toJson(promoCategories)).apply()
-        sharedPreferences.edit().putLong("promo_categories", System.currentTimeMillis()).apply()
+        sharedPreferences.edit().putLong("promo_categories_timestamp", System.currentTimeMillis()).apply()
     }
 
     private fun savePromos(promos: List<Promo>, category: Promo.Category? = null) {
@@ -56,7 +56,7 @@ class PromoRepositoryImpl(context: Context, private val accountRepository: Accou
 
     private fun getCachedPromoCategories(): List<Promo.Category> {
         val rawJson = sharedPreferences.getString("promo_categories", "")
-        val timestamp = sharedPreferences.getLong("promo_categories", -1)
+        val timestamp = sharedPreferences.getLong("promo_categories_timestamp", -1)
 
         if (rawJson.isBlank() || timestamp == -1L || System.currentTimeMillis() - timestamp >= 60000) {
             return arrayListOf()
