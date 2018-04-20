@@ -1,5 +1,7 @@
 package com.raturu.pertaminanow.data.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import java.util.*
 
 /**
@@ -8,6 +10,7 @@ import java.util.*
  * Name       : Zetra
  * GitHub     : https://github.com/zetbaitsu
  */
+@Parcelize
 data class User(
         val email: String,
         val ktp: String,
@@ -18,4 +21,4 @@ data class User(
         val avatar: String,
         val balance: Long,
         val point: Int
-)
+) : Parcelable

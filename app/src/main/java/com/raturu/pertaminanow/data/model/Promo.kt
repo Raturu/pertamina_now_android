@@ -1,5 +1,7 @@
 package com.raturu.pertaminanow.data.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import java.util.*
 
 /**
@@ -8,6 +10,7 @@ import java.util.*
  * Name       : Zetra
  * GitHub     : https://github.com/zetbaitsu
  */
+@Parcelize
 data class Promo(
         val id: String,
         val category: Category,
@@ -18,9 +21,10 @@ data class Promo(
         val endDate: Date,
         val spbu: Spbu,
         val point: Int
-) {
+) : Parcelable {
+    @Parcelize
     data class Category(
             val id: String,
             val name: String
-    )
+    ) : Parcelable
 }

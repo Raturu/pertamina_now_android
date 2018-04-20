@@ -20,6 +20,10 @@ android {
     }
 }
 
+androidExtensions {
+    experimental true
+}
+
 ext {
     androidSupportLibVersion = "27.1.1"
     okhttpLibVersion = '3.9.1'
