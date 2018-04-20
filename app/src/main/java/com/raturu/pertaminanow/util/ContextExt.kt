@@ -9,6 +9,4 @@ import android.support.v4.content.ContextCompat
  * Name       : Zetra
  * GitHub     : https://github.com/zetbaitsu
  */
-fun Context.getColorValue(id: Int): Int {
-    return ContextCompat.getColor(this, id)
-}
+fun Context.getColorValue(id: Int): Int = ContextCompat.getColor(this, id)

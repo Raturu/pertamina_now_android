@@ -12,10 +12,6 @@ import java.util.*
 private val fullDateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.US)
 private val simpleMonthFormat = SimpleDateFormat("dd MMM yyyy", Locale.US)
 
-fun Date.toFullDateFormat(): String {
-    return fullDateFormat.format(this)
-}
+fun Date.toFullDateFormat(): String = fullDateFormat.format(this)
 
-fun Date.toSimpleMonthFormat(): String {
-    return simpleMonthFormat.format(this)
-}
+fun Date.toSimpleMonthFormat(): String = simpleMonthFormat.format(this)

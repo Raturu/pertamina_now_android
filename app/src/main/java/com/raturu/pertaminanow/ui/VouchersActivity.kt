@@ -41,7 +41,7 @@ class VouchersActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when {
-            item.itemId == android.R.id.home -> finish()
+            item.itemId == android.R.id.home -> onBackPressed()
         }
         return super.onOptionsItemSelected(item)
     }

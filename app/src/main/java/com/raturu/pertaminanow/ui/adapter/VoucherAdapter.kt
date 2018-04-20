@@ -13,9 +13,8 @@ import com.raturu.pertaminanow.ui.adapter.viewholder.VoucherViewHolder
  * GitHub     : https://github.com/zetbaitsu
  */
 class VoucherAdapter(context: Context) : BaseAdapter<Voucher, VoucherViewHolder>(context) {
-    override fun getItemResourceLayout(viewType: Int): Int {
-        return R.layout.item_voucher
-    }
+
+    override fun getItemResourceLayout(viewType: Int): Int = R.layout.item_voucher
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VoucherViewHolder {
         return VoucherViewHolder(getView(parent, viewType), itemClickListener, itemLongClickListener)

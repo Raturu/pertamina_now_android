@@ -13,9 +13,8 @@ import com.raturu.pertaminanow.ui.adapter.viewholder.TransactionViewHolder
  * GitHub     : https://github.com/zetbaitsu
  */
 class TransactionAdapter(context: Context) : BaseAdapter<Transaction, TransactionViewHolder>(context) {
-    override fun getItemResourceLayout(viewType: Int): Int {
-        return R.layout.item_transaction
-    }
+
+    override fun getItemResourceLayout(viewType: Int): Int = R.layout.item_transaction
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
         return TransactionViewHolder(getView(parent, viewType), itemClickListener, itemLongClickListener)

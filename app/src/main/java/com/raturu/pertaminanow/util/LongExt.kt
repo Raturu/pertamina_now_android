@@ -16,6 +16,4 @@ private val rupiahFormat by lazy {
     return@lazy format
 }
 
-fun Long.toRupiahFormat(): String {
-    return "Rp. ${rupiahFormat.format(this)}"
-}
+fun Long.toRupiahFormat(): String = "Rp. ${rupiahFormat.format(this)}"

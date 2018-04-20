@@ -57,7 +57,7 @@ class AccountRepositoryImpl(context: Context, private val restApi: RestApi) : Ac
             if (rawJson.isBlank()) {
                 throw IllegalStateException("You are not logged in!")
             }
-            
+
             return@fromCallable gson.fromJson(rawJson, Account::class.java)
         }
     }
@@ -99,8 +99,7 @@ class AccountRepositoryImpl(context: Context, private val restApi: RestApi) : Ac
     }
 
     override fun logout(): Single<Unit> {
-        sharedPreferences.edit().clear().apply()
-        return Single.just(Unit)
+        return Single.fromCallable { sharedPreferences.edit().clear().apply() }
     }
 
     private fun saveAccount(account: Account) {
@@ -113,10 +112,10 @@ class AccountRepositoryImpl(context: Context, private val restApi: RestApi) : Ac
 
     private fun getRequestCode(): RequestOtpCodeResponse {
         val rawJson = sharedPreferences.getString("otp_request", "")
-
         if (rawJson.isBlank()) {
             throw IllegalStateException("You don't have any request code!")
         }
+
         return gson.fromJson(rawJson, RequestOtpCodeResponse::class.java)
     }
 }
