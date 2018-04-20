@@ -77,4 +77,11 @@ interface RestApi {
     fun getTransactionHistories(
             @Header("x-api-key") token: String
     ): Single<List<GetTransactionHistoriesResponse>>
+
+    @FormUrlEncoded
+    @POST("/pertamina-now/api/Collection/topUp/")
+    fun topUpBalance(
+            @Header("x-api-key") token: String,
+            @Field("amount") amount: Long
+    ): Single<TopUpBalanceResponse>
 }
