@@ -89,4 +89,9 @@ interface RestApi {
     fun getBalance(
             @Header("x-api-key") token: String
     ): Single<GetBalanceResponse>
+
+    @GET("/pertamina-now/api/Collection/pointUser/")
+    fun getPoint(
+            @Header("x-api-key") token: String
+    ): Single<GetPointResponse>
 }
