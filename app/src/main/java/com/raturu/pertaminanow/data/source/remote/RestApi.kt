@@ -1,9 +1,6 @@
 package com.raturu.pertaminanow.data.source.remote
 
-import com.raturu.pertaminanow.data.source.remote.response.AuthResponse
-import com.raturu.pertaminanow.data.source.remote.response.IsKtpVerifiedResponse
-import com.raturu.pertaminanow.data.source.remote.response.RequestOtpCodeResponse
-import com.raturu.pertaminanow.data.source.remote.response.VerifyKtpResponse
+import com.raturu.pertaminanow.data.source.remote.response.*
 import io.reactivex.Single
 import retrofit2.http.*
 
@@ -37,9 +34,22 @@ interface RestApi {
             @Header("x-api-key") token: String,
             @Field("ktp") ktpSerialNumber: String
     ): Single<VerifyKtpResponse>
-    
+
     @GET("/pertamina-now/api/Collection/checkKTP")
     fun isKtpVerified(
             @Header("x-api-key") token: String
     ): Single<IsKtpVerifiedResponse>
+
+    @FormUrlEncoded
+    @POST("/pertamina-now/api/Collection/updateProfil/")
+    fun updateProfile(
+            @Header("x-api-key") token: String,
+            @Field("nama") name: String,
+            @Field("jenis_kelamin") male: Int,
+            @Field("tanggal_lahir") dateOfBirth: String,
+            @Field("tempat_lahir") placeOfBirth: String,
+            @Field("email") email: String,
+            @Field("no_tlp") phoneNumber: String,
+            @Field("username") username: String
+    ): Single<UpdateProfileResponse>
 }
