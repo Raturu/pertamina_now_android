@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.raturu.pertaminanow.R
+import com.raturu.pertaminanow.data.model.Location
 import com.raturu.pertaminanow.data.model.Promo
+import com.raturu.pertaminanow.data.model.Spbu
 import com.raturu.pertaminanow.ui.adapter.PromoAdapter
 import com.raturu.pertaminanow.util.ImageUtil
 import kotlinx.android.synthetic.main.fragment_promo.*
@@ -40,8 +42,9 @@ class PromoFragment : Fragment() {
 
     private fun generateDummyData(count: Int): List<Promo> {
         return (1..count).map {
-            Promo("$it", "Diskon Pertamax Hingga 75% Khusus Untuk Pengguna Baru",
-                    "", ImageUtil.getImage(it), Date(), Date())
+            Promo("$it", Promo.Category("", ""), "Diskon Pertamax Hingga 75% Khusus Untuk Pengguna Baru",
+                    "", ImageUtil.getImage(it), Date(), Date(),
+                    Spbu("", "", Location("", "", "", 0.0, 0.0)), 0)
         }
     }
 }

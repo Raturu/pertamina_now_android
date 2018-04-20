@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.raturu.pertaminanow.R
+import com.raturu.pertaminanow.data.model.Location
+import com.raturu.pertaminanow.data.model.Spbu
 import com.raturu.pertaminanow.data.model.Transaction
 import com.raturu.pertaminanow.ui.TransactionDetailActivity
 import com.raturu.pertaminanow.ui.adapter.TransactionAdapter
@@ -43,6 +45,9 @@ class TransactionFragment : Fragment() {
     }
 
     private fun generateDummyData(count: Int): List<Transaction> {
-        return (0..count).map { Transaction("$it", Date(), it.toDouble(), it.toLong()) }
+        return (1..count).map {
+            Transaction("$it", Date(), it.toLong(), it.toDouble(), it.toLong(),
+                    Spbu("", "", Location("", "", "", 0.0, 0.0)), 0)
+        }
     }
 }
