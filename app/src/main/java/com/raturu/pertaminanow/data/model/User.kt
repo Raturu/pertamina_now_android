@@ -14,5 +14,8 @@ data class User(
         val phoneNumber: String,
         val gender: Gender,
         val dateOfBirth: Date,
-        val name: String
+        val name: String,
+        val avatar: String,
+        val balance: Long,
+        val point: Int
 )

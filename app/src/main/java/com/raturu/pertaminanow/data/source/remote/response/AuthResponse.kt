@@ -20,8 +20,8 @@ data class AuthResponse(
         @SerializedName("tempat_lahir") val tempatLahir: String,
         @SerializedName("email") val email: String,
         @SerializedName("no_tlp") val noTlp: String,
-        @SerializedName("saldo") val saldo: String,
-        @SerializedName("poin") val poin: String,
+        @SerializedName("saldo") val saldo: Long,
+        @SerializedName("poin") val poin: Int,
         @SerializedName("API_key") val apiKey: String
 ) {
     fun toAccountModel(): Account {
@@ -32,7 +32,10 @@ data class AuthResponse(
                         noTlp,
                         if (jenisKelamin == "0") Gender.FEMALE else Gender.MALE,
                         tanggalLahir.toDate(),
-                        nama
+                        nama,
+                        "",
+                        saldo,
+                        poin
                 ),
                 apiKey
         )
