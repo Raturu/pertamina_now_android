@@ -53,7 +53,12 @@ class AccountRepositoryImpl(context: Context, private val restApi: RestApi) : Ac
 
     override fun getAccount(): Single<Account> {
         return Single.fromCallable {
-            gson.fromJson(sharedPreferences.getString("account", ""), Account::class.java)
+            val rawJson = sharedPreferences.getString("account", "")
+            if (rawJson.isBlank()) {
+                throw IllegalStateException("You are not logged in!")
+            }
+            
+            return@fromCallable gson.fromJson(rawJson, Account::class.java)
         }
     }
 
