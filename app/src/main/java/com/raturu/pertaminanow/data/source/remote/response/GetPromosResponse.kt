@@ -1,6 +1,10 @@
 package com.raturu.pertaminanow.data.source.remote.response
 
 import com.google.gson.annotations.SerializedName
+import com.raturu.pertaminanow.data.model.Location
+import com.raturu.pertaminanow.data.model.Promo
+import com.raturu.pertaminanow.data.model.Spbu
+import com.raturu.pertaminanow.data.source.remote.toDate
 
 /**
  * Created on : April 20, 2018
@@ -9,6 +13,7 @@ import com.google.gson.annotations.SerializedName
  * GitHub     : https://github.com/zetbaitsu
  */
 data class GetPromosResponse(
+        @SerializedName("id") val id: String,
         @SerializedName("id_spbu") val idSpbu: String,
         @SerializedName("no_spbu") val noSpbu: String,
         @SerializedName("nama_spbu") val namaSpbu: String,
@@ -25,5 +30,18 @@ data class GetPromosResponse(
         @SerializedName("judul") val judul: String,
         @SerializedName("deskripsi") val deskripsi: String,
         @SerializedName("gambar") val gambar: String,
+        @SerializedName("id_kategori") val idKategori: String,
         @SerializedName("kategori") val kategori: String
-)
+) {
+    fun toPromoModel(): Promo = Promo(
+            id,
+            Promo.Category(idKategori, kategori),
+            judul,
+            deskripsi,
+            gambar,
+            waktuMulai.toDate(),
+            waktuSelesai.toDate(),
+            Spbu(idSpbu, namaSpbu, Location(alamatSpbu, kotaSpbu, provinsiSpbu, latitude, longitude)),
+            poin
+    )
+}

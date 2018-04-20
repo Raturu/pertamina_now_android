@@ -1,6 +1,7 @@
 package com.raturu.pertaminanow.data.source.remote.response
 
 import com.google.gson.annotations.SerializedName
+import com.raturu.pertaminanow.data.model.Promo
 
 /**
  * Created on : April 13, 2018
@@ -11,4 +12,6 @@ import com.google.gson.annotations.SerializedName
 data class GetPromoCategoriesResponse(
         @SerializedName("id") val id: String,
         @SerializedName("nama") val nama: String
-)
+) {
+    fun toPromoCategoryModel(): Promo.Category = Promo.Category(id, nama)
+}
