@@ -42,7 +42,7 @@ class KtpVerificationActivity : AppCompatActivity(), KtpVerificationPresenter.Vi
         registerReceiver(nfcStateReceiver, IntentFilter(NfcAdapter.ACTION_ADAPTER_STATE_CHANGED))
 
         nearbySpbuLink.setOnClickListener {
-            //TODO
+            startActivity(Intent(this, NearbySpbuActivity::class.java))
         }
     }
 
