@@ -115,7 +115,11 @@ class KtpVerificationActivity : AppCompatActivity(), KtpVerificationPresenter.Vi
     }
 
     private fun onKtpDataReceived(ktpSerialNumber: String) {
-        ktpVerificationPresenter.verify(ktpSerialNumber)
+        if (ktpSerialNumber.startsWith("04") && ktpSerialNumber.endsWith("80") && ktpSerialNumber.length == 14) {
+            ktpVerificationPresenter.verify(ktpSerialNumber)
+        } else {
+            showErrorMessage("Kartu tidak dikenali!")
+        }
     }
 
     override fun showKtpVerifiedDialog() {
