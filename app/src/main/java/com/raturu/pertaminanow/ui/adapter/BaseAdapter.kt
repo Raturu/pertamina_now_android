@@ -15,7 +15,7 @@ import com.raturu.pertaminanow.ui.adapter.viewholder.BaseViewHolder
  * GitHub     : https://github.com/zetbaitsu
  */
 abstract class BaseAdapter<Data, Holder : BaseViewHolder<Data>>(private val context: Context) : RecyclerView.Adapter<Holder>() {
-    protected val data: MutableList<Data> = mutableListOf()
+    val data: MutableList<Data> = mutableListOf()
 
     protected var itemClickListener: OnItemClickListener? = null
     protected var itemLongClickListener: OnItemLongClickListener? = null
