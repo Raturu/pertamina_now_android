@@ -36,7 +36,7 @@ class VouchersActivity : AppCompatActivity() {
     }
 
     private fun generateDummyData(count: Int): List<Voucher> {
-        return (1..count).map { Voucher("$it", "FREE Rp. 25.000.00 at Halodoc App", it, ImageUtil.getImage(it)) }
+        return (1..count).map { Voucher("$it", "GRATIS GO-Pay Rp. 25.000.00 pada aplikasi Go-Jek", it, ImageUtil.getImage(it)) }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

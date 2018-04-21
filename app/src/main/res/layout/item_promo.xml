@@ -52,7 +52,7 @@
             android:layout_marginStart="16dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Promo period: 01 Apr 2018 - 31 Mei 2018"
+            android:text="Periode: 01 Apr 2018 - 31 Mei 2018"
             android:textColor="@color/secondary_text"
             android:textSize="14sp" />
 

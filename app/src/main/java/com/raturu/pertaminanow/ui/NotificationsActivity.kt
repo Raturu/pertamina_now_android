@@ -16,7 +16,7 @@ class NotificationsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notifications)
         supportActionBar?.let {
-            it.title = "Notifications"
+            it.title = "Notifikasi"
             it.setDisplayHomeAsUpEnabled(true)
             it.setDisplayShowHomeEnabled(true)
         }

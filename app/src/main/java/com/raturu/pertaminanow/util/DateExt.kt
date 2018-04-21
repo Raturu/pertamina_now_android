@@ -9,8 +9,8 @@ import java.util.*
  * Name       : Zetra
  * GitHub     : https://github.com/zetbaitsu
  */
-private val fullDateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.US)
-private val simpleMonthFormat = SimpleDateFormat("dd MMM yyyy", Locale.US)
+private val fullDateFormat = SimpleDateFormat("dd MMMM yyyy", Locale("ID"))
+private val simpleMonthFormat = SimpleDateFormat("dd MMM yyyy", Locale("ID"))
 private val fullTimeFormat = SimpleDateFormat("EEEE, dd MMM yyyy, HH:mm", Locale("ID"))
 
 fun Date.toFullDateFormat(): String = fullDateFormat.format(this)

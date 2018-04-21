@@ -35,7 +35,7 @@ class TransactionDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transaction_detail)
         supportActionBar?.let {
-            it.title = "Transaction Detail"
+            it.title = "Detail Transaksi"
             it.setDisplayHomeAsUpEnabled(true)
             it.setDisplayShowHomeEnabled(true)
         }

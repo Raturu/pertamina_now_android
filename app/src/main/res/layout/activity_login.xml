@@ -41,7 +41,7 @@
                     android:id="@+id/phoneNumberTextField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Phone Number"
+                    android:hint="Nomor Telepon"
                     android:inputType="phone"
                     android:textColor="@color/primary_text" />
             </android.support.design.widget.TextInputLayout>

@@ -26,7 +26,7 @@
                 android:id="@+id/otpCodeTextField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="OTP Code"
+                android:hint="Kode OTP"
                 android:inputType="number"
                 android:textColor="@color/primary_text" />
         </android.support.design.widget.TextInputLayout>
@@ -38,7 +38,7 @@
             android:layout_marginTop="16dp"
             android:background="@color/divider"
             android:enabled="false"
-            android:text="Verify"
+            android:text="Verifikasi"
             android:textColor="@color/white" />
 
         <ProgressBar
@@ -66,7 +66,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="end"
-                android:text="Resend Code"
+                android:text="Kirim Ulang"
                 android:textColor="@color/primary"
                 android:textSize="14sp" />
 
@@ -85,7 +85,7 @@
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="Change Number"
+                android:text="Ganti Nomor"
                 android:textColor="@color/primary"
                 android:textSize="14sp" />
 
@@ -101,7 +101,7 @@
             android:focusable="true"
             android:gravity="center"
             android:linksClickable="true"
-            android:text="We have sent you sms with secret code, please input the code in above text field!"
+            android:text="Kami telah mengirimkan kode rahasia ke nomor telepon anda, silahkan masukan kode tersebut pada form di atas!"
             android:textColor="@color/secondary_text"
             android:textColorLink="@color/primary"
             android:textSize="12sp" />

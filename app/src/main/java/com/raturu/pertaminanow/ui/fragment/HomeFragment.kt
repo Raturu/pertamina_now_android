@@ -48,7 +48,7 @@ class HomeFragment : Fragment(), HomePresenter.View {
         val fragments = mutableListOf(PromoFragment.newInstance())
         fragments.addAll(promoCategories.map { PromoFragment.newInstance(it) })
 
-        val titles = mutableListOf("All")
+        val titles = mutableListOf("Semua")
         titles.addAll(promoCategories.map { it.name })
 
         viewPager.adapter = HomePagerAdapter(childFragmentManager, fragments, titles)

@@ -81,25 +81,25 @@ class EditProfileActivity : AppCompatActivity(), EditProfilePresenter.View, Date
 
     private fun validateInput(): Boolean {
         if (nameTextField.text.toString().isBlank()) {
-            nameTextField.error = "Please insert your name!"
+            nameTextField.error = "Mohon masukan nama anda!"
             nameTextField.requestFocus()
             return false
         }
 
         if (emailTextField.text.toString().isBlank()) {
-            emailTextField.error = "Please insert your email!"
+            emailTextField.error = "Mohon masukan email anda!"
             emailTextField.requestFocus()
             return false
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(emailTextField.text.toString()).matches()) {
-            emailTextField.error = "Please insert a valid email!"
+            emailTextField.error = "Mohon masukan email yang valid!"
             emailTextField.requestFocus()
             return false
         }
 
         if (dateOfBirthTextField.text.toString().isBlank()) {
-            dateOfBirthTextField.error = "Please insert your birth date!"
+            dateOfBirthTextField.error = "Mohon isi tanggal lahir anda!"
             return false
         }
 
@@ -149,7 +149,7 @@ class EditProfileActivity : AppCompatActivity(), EditProfilePresenter.View, Date
 
     override fun onProfileUpdated(account: Account) {
         showProfile(account)
-        Snackbar.make(nameTextField, "Profile Updated!", Snackbar.LENGTH_LONG).show()
+        Snackbar.make(nameTextField, "Profil berhasil diubah!", Snackbar.LENGTH_LONG).show()
     }
 
     override fun showErrorMessage(errorMessage: String) {

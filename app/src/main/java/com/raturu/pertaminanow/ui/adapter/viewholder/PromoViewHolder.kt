@@ -29,7 +29,7 @@ class PromoViewHolder(itemView: View,
         promoImageView.setBackgroundColor(ColorUtil.randomColor())
         Glide.with(itemView.context).load(data.imageUrl).into(promoImageView)
         promoTitleTextView.text = data.title
-        periodTextView.text = "Promo period: ${data.startDate.toSimpleMonthFormat()} - ${data.endDate.toSimpleMonthFormat()}"
+        periodTextView.text = "Periode: ${data.startDate.toSimpleMonthFormat()} - ${data.endDate.toSimpleMonthFormat()}"
     }
 
 }

@@ -55,7 +55,7 @@
                         android:background="?attr/selectableItemBackground"
                         android:clickable="true"
                         android:focusable="true"
-                        android:text="EDIT"
+                        android:text="UBAH"
                         android:textColor="@color/primary"
                         android:textSize="16sp" />
 
@@ -209,7 +209,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Settings"
+                    android:text="Pengaturan"
                     android:textColor="@color/secondary_text"
                     android:textSize="16sp" />
 
@@ -245,7 +245,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Terms of Service"
+                    android:text="Syarat Kententuan"
                     android:textColor="@color/secondary_text"
                     android:textSize="16sp" />
 
@@ -281,7 +281,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Privacy Policy"
+                    android:text="Kebijakan Privasi"
                     android:textColor="@color/secondary_text"
                     android:textSize="16sp" />
 
@@ -317,7 +317,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="About"
+                    android:text="Tentang"
                     android:textColor="@color/secondary_text"
                     android:textSize="16sp" />
 
@@ -342,7 +342,7 @@
                 android:gravity="center"
                 android:paddingBottom="12dp"
                 android:paddingTop="12dp"
-                android:text="LOGOUT"
+                android:text="KELUAR"
                 android:textColor="@color/primary" />
 
         </FrameLayout>
