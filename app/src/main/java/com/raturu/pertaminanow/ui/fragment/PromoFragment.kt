@@ -11,6 +11,7 @@ import com.raturu.pertaminanow.PertaminaApp
 import com.raturu.pertaminanow.R
 import com.raturu.pertaminanow.data.model.Promo
 import com.raturu.pertaminanow.presenter.PromoPresenter
+import com.raturu.pertaminanow.ui.PromoDetailActivity
 import com.raturu.pertaminanow.ui.adapter.PromoAdapter
 import kotlinx.android.synthetic.main.fragment_promo.*
 
@@ -47,7 +48,7 @@ class PromoFragment : Fragment(), PromoPresenter.View {
 
         promoAdapter = PromoAdapter(activity!!)
         promoAdapter.setOnItemClickListener {
-            //TODO
+            startActivity(PromoDetailActivity.newIntent(activity!!, promoAdapter.data[it]))
         }
 
         recyclerView.layoutManager = LinearLayoutManager(activity)
