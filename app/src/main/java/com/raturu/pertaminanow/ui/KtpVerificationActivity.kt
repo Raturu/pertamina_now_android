@@ -26,7 +26,7 @@ class KtpVerificationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ktp_verification)
-
+        supportActionBar?.title = "Aktivasi E-KTP"
         nfcAdapter = NfcAdapter.getDefaultAdapter(this)
     }
 
