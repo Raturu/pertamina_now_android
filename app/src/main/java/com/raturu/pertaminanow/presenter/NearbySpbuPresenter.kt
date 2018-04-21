@@ -1,6 +1,7 @@
 package com.raturu.pertaminanow.presenter
 
 import com.raturu.pertaminanow.data.model.Spbu
+import com.raturu.pertaminanow.data.source.AccountRepository
 import com.raturu.pertaminanow.data.source.SpbuRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -11,7 +12,19 @@ import io.reactivex.schedulers.Schedulers
  * Name       : Zetra
  * GitHub     : https://github.com/zetbaitsu
  */
-class NearbySpbuPresenter(private val view: View, private val spbuRepository: SpbuRepository) {
+class NearbySpbuPresenter(private val view: View, private val accountRepository: AccountRepository, private val spbuRepository: SpbuRepository) {
+
+    fun loadKtpVerifySpbuCode() {
+        accountRepository.getKtpVerifySpbuCode()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    view.showKtpVerifySpbuCode(it)
+                }, {
+                    it.printStackTrace()
+                    it.message?.let { view.showErrorMessage(it) }
+                })
+    }
 
     fun loadNearbySpbu() {
         spbuRepository.getNearbySpbu(0.0, 0.0)
@@ -26,6 +39,8 @@ class NearbySpbuPresenter(private val view: View, private val spbuRepository: Sp
     }
 
     interface View {
+        fun showKtpVerifySpbuCode(ktpVerifySpbuCode: String)
+
         fun showNearbySpbu(nearbySpbu: List<Spbu>)
 
         fun showErrorMessage(errorMessage: String)

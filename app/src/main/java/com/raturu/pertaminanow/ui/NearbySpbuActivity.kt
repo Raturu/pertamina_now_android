@@ -11,7 +11,7 @@ import com.raturu.pertaminanow.R
 import com.raturu.pertaminanow.data.model.Spbu
 import com.raturu.pertaminanow.presenter.NearbySpbuPresenter
 import com.raturu.pertaminanow.ui.adapter.NearbySpbuAdapter
-import kotlinx.android.synthetic.main.fragment_transaction.*
+import kotlinx.android.synthetic.main.activity_nearby_spbu.*
 
 
 /**
@@ -29,7 +29,8 @@ class NearbySpbuActivity : AppCompatActivity(), NearbySpbuPresenter.View {
         setContentView(R.layout.activity_nearby_spbu)
         supportActionBar?.title = "SPBU Terdekat"
 
-        nearbySpbuPresenter = NearbySpbuPresenter(this, PertaminaApp.instance.getComponent().spbuRepository)
+        val appComponent = PertaminaApp.instance.getComponent()
+        nearbySpbuPresenter = NearbySpbuPresenter(this, appComponent.accountRepository, appComponent.spbuRepository)
 
         nearbySpbuAdapter = NearbySpbuAdapter(this)
         nearbySpbuAdapter.setOnItemClickListener {
@@ -45,7 +46,12 @@ class NearbySpbuActivity : AppCompatActivity(), NearbySpbuPresenter.View {
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = nearbySpbuAdapter
 
+        nearbySpbuPresenter.loadKtpVerifySpbuCode()
         nearbySpbuPresenter.loadNearbySpbu()
+    }
+
+    override fun showKtpVerifySpbuCode(ktpVerifySpbuCode: String) {
+        ktpVerifySpbuCodeTextView.text = ktpVerifySpbuCode
     }
 
     override fun showNearbySpbu(nearbySpbu: List<Spbu>) {

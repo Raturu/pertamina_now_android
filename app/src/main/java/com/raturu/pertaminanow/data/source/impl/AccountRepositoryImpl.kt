@@ -98,6 +98,17 @@ class AccountRepositoryImpl(context: Context, private val restApi: RestApi) : Ac
                 }
     }
 
+    override fun getKtpVerifySpbuCode(): Single<String> {
+        return Single.fromCallable { getCachedKtpVerifySpbuCode() }
+                .flatMap { if (it.isBlank()) getRemoteKtpVerifySpbuCode() else getRemoteKtpVerifySpbuCode() }
+    }
+
+    private fun getRemoteKtpVerifySpbuCode(): Single<String> {
+        return getAccount().flatMap { restApi.getKtpVerifySpbuCode(it.token) }
+                .map { it.code }
+                .doOnSuccess { saveKtpVerifySpbuCode(it) }
+    }
+
     override fun logout(): Single<Unit> {
         return Single.fromCallable { sharedPreferences.edit().clear().apply() }
     }
@@ -117,5 +128,13 @@ class AccountRepositoryImpl(context: Context, private val restApi: RestApi) : Ac
         }
 
         return gson.fromJson(rawJson, RequestOtpCodeResponse::class.java)
+    }
+
+    private fun saveKtpVerifySpbuCode(ktpVerifySpbuCode: String) {
+        sharedPreferences.edit().putString("ktp_verify_spbu_code", ktpVerifySpbuCode).apply()
+    }
+
+    private fun getCachedKtpVerifySpbuCode(): String {
+        return sharedPreferences.getString("ktp_verify_spbu_code", "")
     }
 }

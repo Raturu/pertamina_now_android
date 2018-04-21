@@ -30,5 +30,7 @@ interface AccountRepository {
 
     fun getPoint(): Single<Int>
 
+    fun getKtpVerifySpbuCode(): Single<String>
+
     fun logout(): Single<Unit>
 }

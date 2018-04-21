@@ -94,4 +94,9 @@ interface RestApi {
     fun getPoint(
             @Header("x-api-key") token: String
     ): Single<GetPointResponse>
+
+    @GET("/pertamina-now/api/Collection/codeCRC32/")
+    fun getKtpVerifySpbuCode(
+            @Header("x-api-key") token: String
+    ): Single<GetKtpVerifySpbuCode>
 }
