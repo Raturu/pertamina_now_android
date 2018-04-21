@@ -17,6 +17,7 @@ data class Transaction(
         val price: Long,
         val gasolineAmount: Double,
         val paidAmount: Long,
+        val gasolineType: String,
         val spbu: Spbu,
         val point: Int
 ) : Parcelable

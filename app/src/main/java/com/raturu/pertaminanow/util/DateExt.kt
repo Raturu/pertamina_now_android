@@ -11,9 +11,12 @@ import java.util.*
  */
 private val fullDateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.US)
 private val simpleMonthFormat = SimpleDateFormat("dd MMM yyyy", Locale.US)
+private val fullTimeFormat = SimpleDateFormat("EEEE, dd MMM yyyy, HH:mm", Locale("ID"))
 
 fun Date.toFullDateFormat(): String = fullDateFormat.format(this)
 
 fun String.fromFullDateFormat(): Date = fullDateFormat.parse(this)
 
 fun Date.toSimpleMonthFormat(): String = simpleMonthFormat.format(this)
+
+fun Date.toFullTimeFormat(): String = fullTimeFormat.format(this)

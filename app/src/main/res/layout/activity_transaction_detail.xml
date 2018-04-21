@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:hint="Transaction ID"
+                android:hint="ID Transaksi"
                 android:inputType="text"
                 android:text="RT-1254541254"
                 android:textColor="@color/primary_text" />
@@ -35,9 +35,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:hint="Created At"
+                android:hint="Dilakukan pada"
                 android:inputType="text"
                 android:text="Sunday, 8 Apr 2017, 20:22"
+                android:textColor="@color/primary_text" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/priceTextField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:hint="Harga"
+                android:inputType="text"
+                android:text="Rp. 5.000.00"
                 android:textColor="@color/primary_text" />
         </android.support.design.widget.TextInputLayout>
 
@@ -51,7 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:hint="Paid Amount"
+                android:hint="Total Pembayaran"
                 android:inputType="text"
                 android:text="Rp. 50.000.00"
                 android:textColor="@color/primary_text" />
@@ -67,9 +83,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:hint="Gasoline Amount"
+                android:hint="Total Bahan Bakar"
                 android:inputType="text"
-                android:text="10.5 Litre"
+                android:text="10.5 Liter"
                 android:textColor="@color/primary_text" />
         </android.support.design.widget.TextInputLayout>
 
@@ -83,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:hint="Gasoline Type"
+                android:hint="Jenis Bahan Bakar"
                 android:inputType="text"
                 android:text="Pertalite"
                 android:textColor="@color/primary_text" />
@@ -115,7 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:hint="Bonus Point"
+                android:hint="Bonus Poin"
                 android:inputType="text"
                 android:text="354 Pts"
                 android:textColor="@color/primary_text" />

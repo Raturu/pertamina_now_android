@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.raturu.pertaminanow.data.model.Location
 import com.raturu.pertaminanow.data.model.Spbu
 import com.raturu.pertaminanow.data.model.Transaction
-import com.raturu.pertaminanow.data.source.remote.toDate
+import com.raturu.pertaminanow.data.source.remote.toTime
 
 /**
  * Created on : April 20, 2018
@@ -30,10 +30,11 @@ data class GetTransactionHistoriesResponse(
 ) {
     fun toTransactionModel(): Transaction = Transaction(
             idTransaksi,
-            waktuTransaksi.toDate(),
+            waktuTransaksi.toTime(),
             harga,
             totalPembelian,
             totalPembayaran,
+            jenisBbm,
             Spbu(idSpbu, namaSpbu, Location(alamatSpbu, kotaSpbu, provinsiSpbu, latitude, longitude)),
             poin
     )

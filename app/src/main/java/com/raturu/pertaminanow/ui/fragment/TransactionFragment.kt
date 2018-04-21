@@ -1,6 +1,5 @@
 package com.raturu.pertaminanow.ui.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
@@ -41,7 +40,7 @@ class TransactionFragment : Fragment(), TransactionPresenter.View {
 
         transactionAdapter = TransactionAdapter(activity!!)
         transactionAdapter.setOnItemClickListener {
-            startActivity(Intent(activity, TransactionDetailActivity::class.java))
+            startActivity(TransactionDetailActivity.newIntent(activity!!, transactionAdapter.data[it]))
         }
 
         recyclerView.layoutManager = LinearLayoutManager(activity)
