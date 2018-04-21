@@ -1,11 +1,13 @@
 package com.raturu.pertaminanow.ui
 
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Patterns
+import android.widget.DatePicker
 import com.bumptech.glide.Glide
 import com.raturu.pertaminanow.PertaminaApp
 import com.raturu.pertaminanow.R
@@ -15,6 +17,7 @@ import com.raturu.pertaminanow.presenter.EditProfilePresenter
 import com.raturu.pertaminanow.util.fromFullDateFormat
 import com.raturu.pertaminanow.util.toFullDateFormat
 import kotlinx.android.synthetic.main.activity_edit_profile.*
+import java.util.*
 
 /**
  * Created on : April 07, 2018
@@ -22,7 +25,8 @@ import kotlinx.android.synthetic.main.activity_edit_profile.*
  * Name       : Zetra
  * GitHub     : https://github.com/zetbaitsu
  */
-class EditProfileActivity : AppCompatActivity(), EditProfilePresenter.View {
+class EditProfileActivity : AppCompatActivity(), EditProfilePresenter.View, DatePickerDialog.OnDateSetListener {
+
     private lateinit var editProfilePresenter: EditProfilePresenter
     private lateinit var account: Account
 
@@ -56,6 +60,23 @@ class EditProfileActivity : AppCompatActivity(), EditProfilePresenter.View {
                 )
             }
         }
+
+        pickDateButton.setOnClickListener {
+            showDatePickerDialog()
+        }
+    }
+
+    private fun showDatePickerDialog() {
+        val calendar = Calendar.getInstance()
+        DatePickerDialog(this, this, calendar[Calendar.YEAR], calendar[Calendar.MONTH], calendar[Calendar.DAY_OF_MONTH]).show()
+    }
+
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        val calendar = Calendar.getInstance()
+        calendar[Calendar.YEAR] = year
+        calendar[Calendar.MONTH] = month
+        calendar[Calendar.DAY_OF_MONTH] = dayOfMonth
+        dateOfBirthTextField.setText(calendar.time.toFullDateFormat())
     }
 
     private fun validateInput(): Boolean {
