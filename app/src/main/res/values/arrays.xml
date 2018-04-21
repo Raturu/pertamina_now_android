@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="paymentMethods" >
+        <item>Transfer Bank</item>
+        <item>BCA Klikpay</item>
+        <item>Mandiri Clickpay</item>
+        <item>Mandiri E-Cash</item>
+        <item>CIMB Clicks/Rek. Ponsel</item>
+        <item>Indomaret</item>
+        <item>Alfamart</item>
+        <item>Pos Indonesia</item>
+    </string-array>
+</resources>

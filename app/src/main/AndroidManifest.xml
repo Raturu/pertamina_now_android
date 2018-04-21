@@ -34,6 +34,7 @@
         <activity android:name=".ui.NotificationsActivity" />
         <activity android:name=".ui.NearbySpbuActivity" />
         <activity android:name=".ui.PromoDetailActivity" />
+        <activity android:name=".ui.TopUpBalanceActivity" />
     </application>
 
 </manifest>
