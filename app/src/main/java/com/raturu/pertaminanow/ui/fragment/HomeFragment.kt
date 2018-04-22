@@ -14,6 +14,8 @@ import com.raturu.pertaminanow.presenter.HomePresenter
 import com.raturu.pertaminanow.ui.TopUpBalanceActivity
 import com.raturu.pertaminanow.ui.VouchersActivity
 import com.raturu.pertaminanow.ui.adapter.HomePagerAdapter
+import com.raturu.pertaminanow.util.toPointFormat
+import com.raturu.pertaminanow.util.toRupiahFormat
 import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
@@ -35,7 +37,10 @@ class HomeFragment : Fragment(), HomePresenter.View {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        homePresenter = HomePresenter(this, PertaminaApp.instance.getComponent().promoRepository)
+        val appComponent = PertaminaApp.instance.getComponent()
+        homePresenter = HomePresenter(this, appComponent.accountRepository, appComponent.promoRepository)
+        homePresenter.loadBalance()
+        homePresenter.loadPoint()
         homePresenter.loadPromoCategories()
 
         pointButton.setOnClickListener {
@@ -53,6 +58,14 @@ class HomeFragment : Fragment(), HomePresenter.View {
 
     override fun dismissLoading() {
         //TODO
+    }
+
+    override fun showBalance(amount: Long) {
+        balanceTextView.text = amount.toRupiahFormat()
+    }
+
+    override fun showPoint(point: Int) {
+        pointTextView.text = "${point.toPointFormat()} pts"
     }
 
     override fun showPromoFragments(promoCategories: List<Promo.Category>) {

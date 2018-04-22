@@ -12,6 +12,30 @@ import io.reactivex.schedulers.Schedulers
  */
 class AccountPresenter(private val view: View, private val accountRepository: AccountRepository) {
 
+    fun loadBalance() {
+        accountRepository.getBalance()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    view.showBalance(it)
+                }, {
+                    it.printStackTrace()
+                    it.message?.let { view.showErrorMessage(it) }
+                })
+    }
+
+    fun loadPoint() {
+        accountRepository.getPoint()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    view.showPoint(it)
+                }, {
+                    it.printStackTrace()
+                    it.message?.let { view.showErrorMessage(it) }
+                })
+    }
+
     fun logout() {
         accountRepository.logout()
                 .subscribeOn(Schedulers.io())
@@ -20,6 +44,12 @@ class AccountPresenter(private val view: View, private val accountRepository: Ac
     }
 
     interface View {
+        fun showBalance(amount: Long)
+
+        fun showPoint(point: Int)
+
         fun showLoginPage()
+
+        fun showErrorMessage(errorMessage: String)
     }
 }
