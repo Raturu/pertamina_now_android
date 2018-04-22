@@ -1,5 +1,6 @@
 package com.raturu.pertaminanow.presenter
 
+import com.raturu.pertaminanow.data.model.Account
 import com.raturu.pertaminanow.data.source.AccountRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -11,6 +12,18 @@ import io.reactivex.schedulers.Schedulers
  * GitHub     : https://github.com/zetbaitsu
  */
 class AccountPresenter(private val view: View, private val accountRepository: AccountRepository) {
+
+    fun loadAccount() {
+        accountRepository.getAccount()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    view.showAccount(it)
+                }, {
+                    it.printStackTrace()
+                    it.message?.let { view.showErrorMessage(it) }
+                })
+    }
 
     fun loadBalance() {
         accountRepository.getBalance()
@@ -44,6 +57,8 @@ class AccountPresenter(private val view: View, private val accountRepository: Ac
     }
 
     interface View {
+        fun showAccount(account: Account)
+
         fun showBalance(amount: Long)
 
         fun showPoint(point: Int)

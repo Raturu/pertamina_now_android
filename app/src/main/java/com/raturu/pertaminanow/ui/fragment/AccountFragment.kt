@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.raturu.pertaminanow.PertaminaApp
 import com.raturu.pertaminanow.R
+import com.raturu.pertaminanow.data.model.Account
 import com.raturu.pertaminanow.presenter.AccountPresenter
 import com.raturu.pertaminanow.ui.EditProfileActivity
 import com.raturu.pertaminanow.ui.LoginActivity
@@ -40,6 +41,7 @@ class AccountFragment : Fragment(), AccountPresenter.View {
         super.onActivityCreated(savedInstanceState)
 
         accountPresenter = AccountPresenter(this, PertaminaApp.instance.getComponent().accountRepository)
+        accountPresenter.loadAccount()
         accountPresenter.loadBalance()
         accountPresenter.loadPoint()
 
@@ -58,6 +60,12 @@ class AccountFragment : Fragment(), AccountPresenter.View {
         logoutLink.setOnClickListener {
             accountPresenter.logout()
         }
+    }
+
+    override fun showAccount(account: Account) {
+        nameTextView.text = account.user.name
+        emailTextView.text = account.user.email
+        phoneTextView.text = account.user.phoneNumber
     }
 
     override fun showBalance(amount: Long) {
