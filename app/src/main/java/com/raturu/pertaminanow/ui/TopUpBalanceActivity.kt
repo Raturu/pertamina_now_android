@@ -5,6 +5,7 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.MenuItem
 import android.view.View
 import com.raturu.pertaminanow.PertaminaApp
 import com.raturu.pertaminanow.R
@@ -96,5 +97,12 @@ class TopUpBalanceActivity : AppCompatActivity(), TopUpBalancePresenter.View {
 
     override fun showErrorMessage(errorMessage: String) {
         Snackbar.make(submitButton, errorMessage, Snackbar.LENGTH_LONG).show()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when {
+            item.itemId == android.R.id.home -> onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
