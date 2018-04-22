@@ -23,7 +23,7 @@ class SplashActivity : Activity(), SplashPresenter.View {
     }
 
     override fun showHomePage() {
-        startActivity(Intent(this, NearbySpbuActivity::class.java))
+        startActivity(Intent(this, HomeActivity::class.java))
         finish()
     }
 

@@ -19,6 +19,7 @@ import com.raturu.pertaminanow.R
 import com.raturu.pertaminanow.data.model.Spbu
 import com.raturu.pertaminanow.presenter.NearbySpbuPresenter
 import com.raturu.pertaminanow.ui.adapter.NearbySpbuAdapter
+import com.raturu.pertaminanow.util.LocationUtil
 import kotlinx.android.synthetic.main.activity_nearby_spbu.*
 
 
@@ -91,6 +92,7 @@ class NearbySpbuActivity : AppCompatActivity(), NearbySpbuPresenter.View {
     private fun loadNearbySpbu() {
         fusedLocationClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
+                    location?.let { LocationUtil.saveLastLocation(it) }
                     nearbySpbuPresenter.loadNearbySpbu(location?.latitude
                             ?: 0.0, location?.longitude ?: 0.0)
                 }
