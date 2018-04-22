@@ -26,8 +26,8 @@ class NearbySpbuPresenter(private val view: View, private val accountRepository:
                 })
     }
 
-    fun loadNearbySpbu() {
-        spbuRepository.getNearbySpbu(0.0, 0.0)
+    fun loadNearbySpbu(latitude: Double, longitude: Double) {
+        spbuRepository.getNearbySpbu(latitude, longitude)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
