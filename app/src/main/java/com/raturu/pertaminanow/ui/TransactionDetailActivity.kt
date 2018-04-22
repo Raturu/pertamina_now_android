@@ -49,7 +49,7 @@ class TransactionDetailActivity : AppCompatActivity() {
         createdAtTextField.setText(transaction.createdAt.toFullTimeFormat())
         priceTextField.setText(transaction.price.toRupiahFormat())
         paidAmountTextField.setText(transaction.paidAmount.toRupiahFormat())
-        gasolineAmountTextField.setText("${transaction.gasolineAmount} Liter")
+        gasolineAmountTextField.setText("${"%.2f".format(transaction.gasolineAmount)} Liter")
         gasolineTypeField.setText(transaction.gasolineType)
         spbuTextField.setText(transaction.spbu.name)
         bonusPointsTextField.setText("${transaction.point} pts")

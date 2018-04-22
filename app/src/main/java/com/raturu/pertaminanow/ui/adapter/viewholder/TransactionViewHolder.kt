@@ -25,7 +25,7 @@ class TransactionViewHolder(itemView: View,
 
     override fun bind(data: Transaction) {
         paidAmount.text = data.paidAmount.toRupiahFormat()
-        gasolineAmount.text = "${data.gasolineAmount} Liter"
+        gasolineAmount.text = "${"%.2f".format(data.gasolineAmount)} Liter"
         createdAt.text = data.createdAt.toFullDateFormat()
     }
 }
